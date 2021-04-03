@@ -1,17 +1,25 @@
 import React from 'react';
 
 const Place = (props) =>{
-        const {qty, rooms} = props;
-        console.log(qty, rooms)
-        let places = [];
-        
+const {qty, rooms} = props;
+ let places = [];
         for(let i = 0; i < qty; i++){
-        
-         places.push(<ul className='inner__room' key={i+1}>
-             {createPlace(i , rooms)}
-         </ul>)
+            
+                places.push(createLabel
+                (<ul className='inner__room' key={i+1}>
+                {createPlace(i , rooms)}
+            </ul>)
+            )
         }  
-        return places    
+        return places
+}
+
+const createLabel = (wrapped) =>{
+    const {key} = wrapped
+    return <div className ='block__room'>
+    <label className ='floor'>{key} этаж</label>
+    {wrapped}
+    </div>
 }
 
 const createPlace = (itr , arr) =>{

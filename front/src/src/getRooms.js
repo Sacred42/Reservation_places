@@ -1,5 +1,5 @@
 import React from 'react';
-import Places from './place';
+import Places from './createRooms';
 import Ajax from './services/ajax';
 
 class Room extends React.Component{
@@ -26,7 +26,7 @@ defineFloors = () =>{
   let nonRepeat = [];
   this.state.allRooms.forEach(({Name})=>{
     if(nonRepeat.includes(Name[0])){
-      return
+      return;
     } 
     nonRepeat.push(Name[0]);
     getFloor.push(Name[0]);
@@ -37,9 +37,7 @@ defineFloors = () =>{
   this.setState({
     modifiedRooms : Places({qty:this.state.qtyFloor, rooms:this.state.allRooms})
   })
-  // this.state.modifiedRooms = Places({qty:this.state.qtyFloor, rooms:this.state.allRooms});
 
-  console.log(this.state.modifiedRooms);
 }
   
 render(){

@@ -34,6 +34,7 @@ html{
 
 .inner__room{
     display: flex;
+    text-align: center;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 40px;
@@ -42,8 +43,8 @@ html{
 .place{
 
     list-style: none;
-    height: 100px;
-    padding: 30px;
+    min-width: 150px;
+    padding: 40px 0px;
     margin:0px 30px 20px 0px ;
     border: 1px solid #000;
     background-color: aquamarine;
