@@ -1,10 +1,12 @@
 import React from 'react';
+import Modal from './modal';
+
+
 
 const Header = () =>{
     return (
         <header className='header'>
-            <div>забронировать комнату</div>
-            <div>список комнат</div>
+            <Modal/>
         </header>
     )
 }

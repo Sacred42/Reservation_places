@@ -1,5 +1,5 @@
 import React from 'react';
-import Places from './createRooms';
+import Places from './places';
 import Ajax from './services/ajax';
 
 class Room extends React.Component{

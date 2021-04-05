@@ -1,6 +1,7 @@
 import './App.css';
-import Room from './src/getRooms';
+import Room from './src/rooms';
 import Header from './src/header';
+import Modal from './src/modal';
 import { BrowserRouter, Route} from 'react-router-dom';
 
 
@@ -16,7 +17,6 @@ function App() {
         <Route path="/" component={Room} />
         </div>
       </div>
-    
     </div>
     
     </BrowserRouter>
