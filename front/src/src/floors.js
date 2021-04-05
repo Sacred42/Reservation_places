@@ -41,8 +41,9 @@ defineFloors = () =>{
     qtyFloor : getFloor.length
   })
   this.setState({
-    modifiedRooms : Places({qty:this.state.qtyFloor, rooms:this.state.allRooms})
+    modifiedRooms : Places({qty:this.state.qtyFloor, allrooms:this.state.allRooms})
   })
+  console.log(this.state.allRooms)
 }
   
 render(){

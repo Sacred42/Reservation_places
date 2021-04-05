@@ -1,24 +1,25 @@
 import React from 'react';
 import {createLabel} from './hoc-function/createLabel';
 
-const Place = (props) =>{
-const {qty, rooms} = props;
- let places = [];
+const Rooms = (props) =>{
+const {qty, allrooms} = props;
+ let rooms = [];
         for(let i = 0; i < qty; i++){
-                places.push(createLabel
+                rooms.push(createLabel
                 (<ul className='inner__room' key={i+1}>
-                {createPlace(i , rooms)}
+                {createRoom(i , allrooms)}
             </ul>)
             )
         }  
-        return places
+        console.log(rooms);
+        return rooms;
 }
 
-const createPlace = (itr , arr) =>{
-    let place = [];
+const createRoom = (itr , arr) =>{
+    let room = [];
     arr.forEach((elem)=>{
         if(elem.floor === `${itr + 1} этаж`){
-          place.push(
+          room.push(
          (<li className={`place place__${elem.status}`} key={elem.room}>
               <span>{elem.status}</span>
           </li>)
@@ -26,6 +27,6 @@ const createPlace = (itr , arr) =>{
         }
     })
 
-return place;
+return room;
 }
-export default Place;
+export default Rooms;
