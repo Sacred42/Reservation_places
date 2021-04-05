@@ -1,13 +1,26 @@
 export default class Ajax {
     _base = 'http://localhost:5000';
 
-    sendRequest = async(url) =>{
+    sendRequestGet = async(url) =>{
        const request =  await fetch(`${this._base}${url}`);
        return request;
     }
 
+    sendRequestPost = async(url) =>{
+      const request = await fetch(`${this._base}${url}`, {
+        method : 'PUT',
+        mode: 'cors',
+        headers : {'Content-Type': 'application/json' }
+      })
+      return request
+    }
+
     getResource = async() =>{
-      return this.sendRequest('/')
+      return this.sendRequestGet('/');
+    }
+
+    changeResource = async() =>{
+      return this.sendRequestPost('/update');
     }
 
 }

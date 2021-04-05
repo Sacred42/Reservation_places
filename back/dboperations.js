@@ -2,7 +2,7 @@ var config = require('./dbconfig');
 const sql = require('mssql');
 
 
-async function getOrders() {
+async function getResource() {
     const query = 'SELECT Floor.Name, Room.Name, Room.Status FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId'
     try {
         let pool = await sql.connect(config);
@@ -13,7 +13,11 @@ async function getOrders() {
         console.log(error);
     }
 }
+
+// async function changeResource(){
+
+// }
 module.exports = {
-    getOrders: getOrders
+    getResource: getResource
 }
 

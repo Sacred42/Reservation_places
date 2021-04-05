@@ -12,11 +12,18 @@ app.use((req, res, next) => {
     res.append('Access-Control-Allow-Headers', ['*']);
     next();
 });
+app.use(express.json());
 app.use(express.static(path.join(__dirname , 'static')));
+
 app.get('/' , (req,res)=>{
-    dboperations.getOrders().then(result => {
+    dboperations.getResource().then(result => {
         res.send(result);
      })
+})
+
+app.put('/update', (req, res)=>{
+ console.log(req.body)
+//  dboperations.changeResource()
 })
 
 
