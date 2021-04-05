@@ -1,5 +1,5 @@
 import './App.css';
-import Room from './src/rooms';
+import Room from './src/floors';
 import Header from './src/header';
 import Modal from './src/modal';
 import { BrowserRouter, Route} from 'react-router-dom';
@@ -9,7 +9,6 @@ import { BrowserRouter, Route} from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
-    
     <div className="App">
       <Header/>
       <div className='container'>

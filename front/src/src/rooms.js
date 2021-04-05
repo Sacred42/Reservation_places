@@ -1,52 +1,31 @@
 import React from 'react';
-import Places from './places';
-import Ajax from './services/ajax';
+import {createLabel} from './hoc-function/createLabel';
 
-class Room extends React.Component{
-state = {
-allRooms: null,
-qtyFloor: null,
-modifiedRooms : null,
-}
-  
-ajax = new Ajax();
-
-componentDidMount(){
-  this.ajax.getRooms()
-  .then((inform)=>(inform.json()))
-  .then((data)=> (this.setState({
-    allRooms : data[0]
-  })))
-  .then(()=>this.defineFloors())
-  
+const Place = (props) =>{
+const {qty, rooms} = props;
+ let places = [];
+        for(let i = 0; i < qty; i++){
+                places.push(createLabel
+                (<ul className='inner__room' key={i+1}>
+                {createPlace(i , rooms)}
+            </ul>)
+            )
+        }  
+        return places
 }
 
-defineFloors = () =>{
-  const getFloor = [];
-  let nonRepeat = [];
-  this.state.allRooms.forEach(({Name})=>{
-    if(nonRepeat.includes(Name[0])){
-      return;
-    } 
-    nonRepeat.push(Name[0]);
-    getFloor.push(Name[0]);
-  })
-  this.setState({
-    qtyFloor : getFloor.length
-  })
-  this.setState({
-    modifiedRooms : Places({qty:this.state.qtyFloor, rooms:this.state.allRooms})
-  })
+const createPlace = (itr , arr) =>{
+    let place = [];
+    arr.forEach((elem)=>{
+        if(elem.floor === `${itr + 1} этаж`){
+          place.push(
+         (<li className={`place place__${elem.status}`} key={elem.room}>
+              <span>{elem.status}</span>
+          </li>)
+          )
+        }
+    })
 
+return place;
 }
-  
-render(){
-  
-  return(
-    <div>{this.state.modifiedRooms}</div>
-  )
- }
-}
-
-
-export default Room;
+export default Place;
