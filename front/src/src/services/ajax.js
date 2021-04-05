@@ -6,11 +6,13 @@ export default class Ajax {
        return request;
     }
 
-    sendRequestPost = async(url) =>{
+    sendRequestPost = async(url , body) =>{
+      console.log(body);
       const request = await fetch(`${this._base}${url}`, {
         method : 'PUT',
         mode: 'cors',
-        headers : {'Content-Type': 'application/json' }
+        headers : {'Content-Type': 'application/json' },
+        body : JSON.stringify(body)
       })
       return request
     }
@@ -19,8 +21,12 @@ export default class Ajax {
       return this.sendRequestGet('/');
     }
 
-    changeResource = async() =>{
-      return this.sendRequestPost('/update');
+    changeResource = async(number , data) =>{
+      const body ={
+        number : number,
+        data : data
+      }
+      return this.sendRequestPost('/update' , body);
     }
 
 }

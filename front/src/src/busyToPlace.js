@@ -2,45 +2,39 @@ import React, { useState } from 'react';
 import Portal from './portal';
 import Ajax from '../src/services/ajax';
 
-class Modal extends React.Component {
-    state ={
-        visible : false
-    }
+const Modal = () => {
+    // state ={
+    //     visible : false
+    // }
+    const [visible, setVisible] = useState(false);
+    const [number, setNumber] = useState(null);
+    const [data, setData] = useState(null);
+    console.log(visible);
 
-    ajax = new Ajax();
+  const ajax = new Ajax();
 
-    loadingData = (e) =>{
+   const loadingData = (e) =>{
         e.preventDefault();
-        this.ajax.changeResource()
+        ajax.changeResource(number, data)
         .then((resource)=> resource.json)
         .then((data)=>console.log(data));
     }
 
-    showModal = () =>{
-        this.setState({visible : true});
-    }
-
-    hideModal = () =>{
-        this.setState({visible : false});
-    }
-
-
-    render(){
-       const modal = this.state.visible ? (
+   const modal = visible ? (
             <Portal>
-                <form onSubmit={this.loadingData}>
+                <form onSubmit={loadingData}>
                 <div className='modal'>
                     <div className='modal__window'>
-                    <div className='modal__exit' onClick={this.hideModal}>X</div>
+                    <div className='modal__exit' onClick={()=>setVisible(false)}>X</div>
                     <h3 className='modal__header'>Выберети свободную комнату</h3>
                     <div className='modal__body'>
                       <div>
                           <div>Комната(номер)</div>
-                          <input type='text' name='number' id='number'></input>
+                          <input type='text' name='number' id='number' onChange={(e) => setNumber(e.target.value)} ></input>
                       </div>
                       <div>
                           <div>Время</div>
-                          <input type='text' name='time' id='number'></input>
+                          <input type='text' name='time' id='number' onChange={(e) => setData(e.target.value)}></input>
                       </div>
                     </div>
                     <div className='modal__footer'>
@@ -53,11 +47,10 @@ class Modal extends React.Component {
         ) : null;
         return(
             <div className='modal__btn'>
-            <button onClick={this.showModal}>занять место</button>
+            <button onClick={()=>setVisible(true)}>занять место</button>
             {modal}
             </div>
         )
-    }
 
 }
 
