@@ -17,6 +17,7 @@ componentDidMount(){
 }
 
 loadingData = () =>{
+
   this.ajax.getResource()
   .then((resource)=>(resource.json()))
   .then((data)=>trans(data))
@@ -24,6 +25,10 @@ loadingData = () =>{
     allRooms : data
   }))
   .then(()=>this.defineFloors())
+}
+
+componentDidUpdate(){
+  console.log(this.props);
 }
 
 defineFloors = () =>{

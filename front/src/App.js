@@ -12,7 +12,7 @@ function App() {
       <Header/>
       <div className='container'>
         <div className='room'>
-        <Route path="/" component={Room} />
+        <Route path="/" component={Room}/>
         </div>
       </div>
     </div>

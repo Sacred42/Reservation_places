@@ -6,14 +6,15 @@ const Modal = () => {
     const [visible, setVisible] = useState(false);
     const [number, setNumber] = useState(null);
     const [data, setData] = useState(null);
+    const [place, setPlace] = useState(null);
 
   const ajax = new Ajax();
 
    const loadingData = (e) =>{
         e.preventDefault();
         ajax.changeResource(number, data)
-        // .then((resource)=> (resource.json()))
-        .then((data)=>console.log(data))
+        .then((resource)=> (resource.json()))
+        .then((data)=>setPlace(data))
         .catch((err)=>console.log(err));
     }
 
@@ -43,6 +44,7 @@ const Modal = () => {
             </Portal>
         ) : null;
         return(
+
             <div className='modal__btn'>
             <button onClick={()=>setVisible(true)}>занять место</button>
             {modal}
