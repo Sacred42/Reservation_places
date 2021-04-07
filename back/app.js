@@ -1,9 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-// var Db  = require('./dboperations');
-// var Order = require('./order');
 const dboperations = require('./dboperations');
+const checkRoom = require('./middleware/checkRoom')
 
 
 app.use((req, res, next) => {
@@ -16,15 +15,20 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname , 'static')));
 
 app.get('/' , (req,res)=>{
-    dboperations.getResource().then(result => {
+    dboperations.getResource()
+    .then(result => {
         res.send(result);
      })
 })
 
-app.put('/update', (req, res)=>{
- console.log(req.body)
-//  dboperations.changeResource()
+app.put('/update', (req, res )=>{
+ dboperations.changeResource(req.body)
+ .then((result)=> checkRoom.checkRoom(result))
+ .then((data)=> dboperations.updateResource(data))
+ .then((data)=>res.send(data))
+ .catch((err)=> res.status(404).send(err));
 })
+
 
 
 

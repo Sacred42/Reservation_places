@@ -27,7 +27,6 @@ loadingData = () =>{
 }
 
 defineFloors = () =>{
-  console.log(this.state.allRooms)
   const getFloor = [];
   let nonRepeat = [];
   this.state.allRooms.forEach(({floor})=>{

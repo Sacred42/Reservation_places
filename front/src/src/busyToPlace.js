@@ -3,21 +3,18 @@ import Portal from './portal';
 import Ajax from '../src/services/ajax';
 
 const Modal = () => {
-    // state ={
-    //     visible : false
-    // }
     const [visible, setVisible] = useState(false);
     const [number, setNumber] = useState(null);
     const [data, setData] = useState(null);
-    console.log(visible);
 
   const ajax = new Ajax();
 
    const loadingData = (e) =>{
         e.preventDefault();
         ajax.changeResource(number, data)
-        .then((resource)=> resource.json)
-        .then((data)=>console.log(data));
+        // .then((resource)=> (resource.json()))
+        .then((data)=>console.log(data))
+        .catch((err)=>console.log(err));
     }
 
    const modal = visible ? (
