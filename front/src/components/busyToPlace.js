@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Portal from './portal';
-import Ajax from '../src/services/ajax';
+import Ajax from '../components/services/ajax';
 
 const Modal = () => {
     const [visible, setVisible] = useState(false);

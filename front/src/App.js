@@ -1,6 +1,6 @@
 import './App.css';
-import Room from './src/floors';
-import Header from './src/header';
+import Room from './components/floors';
+import Header from './components/header';
 import { BrowserRouter, Route} from 'react-router-dom';
 
 
