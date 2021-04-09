@@ -2,7 +2,7 @@ import Ajax from '../services/ajax';
 import {transformResource} from '../services/transformData';
 const ajax = new Ajax();
 
-const roomAction = () => async(dispatch) =>{
+const getRooms = () => async(dispatch) =>{
      dispatch({type : 'LOADING_ROOMS'});
      ajax.getResource()
      .then((data)=>data.json())
@@ -11,4 +11,9 @@ const roomAction = () => async(dispatch) =>{
      .catch((error)=>dispatch({type : 'FAILURE_ROOMS' , payload : error}))
 }
 
-export {roomAction};
+const changeStatusRoom = (room) => async(dispatch) =>{
+     
+     dispatch({type : 'CHANGE_STATUS_ROOM' , payload : transformResource(room)})
+}
+
+export {getRooms , changeStatusRoom};

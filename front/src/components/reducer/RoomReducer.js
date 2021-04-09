@@ -1,5 +1,5 @@
-const changeStatus = (products, value) =>{
-    console.log(products , value)
+const changeStatus = ({rooms}, value) =>{
+     console.log(rooms[0].props.children);
 }
 
 const RoomReducer = (state = {room : []} , action) =>{

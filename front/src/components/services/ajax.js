@@ -7,7 +7,6 @@ export default class Ajax {
     }
 
     sendRequestPost = async(url , body) =>{
-      console.log(body);
       const request = await fetch(`${this._base}${url}`, {
         method : 'PUT',
         mode: 'cors',

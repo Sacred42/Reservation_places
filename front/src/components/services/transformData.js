@@ -20,7 +20,8 @@ const transformResource = (resource) =>{
       nonRepeat.push(floor);
       getFloor.push(floor);
     })
-    return Rooms({qty:getFloor.length ,allrooms: transformResource} )
+    console.log({qty:getFloor.length ,allrooms: transformResource});
+    return Rooms({qty:getFloor.length ,allrooms: transformResource} );
   }
 
   export {transformResource}

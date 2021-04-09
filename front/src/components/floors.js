@@ -1,16 +1,21 @@
 import React from 'react';
-import Places from './rooms';
-import {roomAction} from './actions/RoomAction';
+import {getRooms} from './actions/RoomAction';
 import { connect } from 'react-redux';
 
 class Room extends React.Component{
 
 componentDidMount(){
- this.props.roomAction();
+ this.props.getRooms();
 }
  
 render(){
-  const {roomAction , rooms, error, loading} = this.props;
+  const { rooms, error, loading} = this.props;
+  if(loading){
+    return <div>...Loading</div>
+  }
+  if(error){
+    <div>{error}</div>
+  }
   return(
     <div>{rooms}</div> 
   )
@@ -19,12 +24,11 @@ render(){
 
 const mapDispatchToProps = (dispatch) =>{
  return{
-  roomAction : ()=> dispatch(roomAction())
+  getRooms : ()=> dispatch(getRooms())
  }
 }
 
 const mapStateToProps = ({RoomReducer}) =>{
-console.log(RoomReducer);
 return RoomReducer;
 }
 

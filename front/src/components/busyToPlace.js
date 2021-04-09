@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
+import { useDispatch} from 'react-redux';
 import Portal from './portal';
 import Ajax from '../components/services/ajax';
+import {changeStatusRoom} from './actions/RoomAction';
 
 const Modal = () => {
     const [visible, setVisible] = useState(false);
     const [number, setNumber] = useState(null);
     const [data, setData] = useState(null);
-    const [place, setPlace] = useState(null);
+    const dispatch = useDispatch();
+    // const [place, setPlace] = useState(null);
 
   const ajax = new Ajax();
 
    const loadingData = (e) =>{
         e.preventDefault();
         ajax.changeResource(number, data)
-        .then((resource)=> (resource.json()))
-        .then((data)=>setPlace(data))
+        .then((resource)=>(resource.json()))
+        .then((room)=>dispatch(changeStatusRoom(room)))
         .catch((err)=>console.log(err));
     }
 
