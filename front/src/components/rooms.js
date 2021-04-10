@@ -1,8 +1,25 @@
 import React from 'react';
 import {createLabel} from './hoc-function/createLabel';
 
-const Rooms = (props) =>{
-const {qty, allrooms} = props;
+const DefineFloors = (props) =>{
+    console.log(props)
+    if(props === undefined){
+        return;
+    }
+    const getFloor = [];
+    let nonRepeat = [];
+    props.forEach(({floor})=>{
+      if(nonRepeat.includes(floor)){
+        return;
+      } 
+      nonRepeat.push(floor);
+      getFloor.push(floor);
+    })
+    return rooms(getFloor.length , props );
+  }
+
+const rooms = (qty, allrooms) =>{
+
  let rooms = [];
         for(let i = 0; i < qty; i++){
                 rooms.push(createLabel
@@ -29,4 +46,4 @@ const createRoom = (itr , arr) =>{
 
 return room;
 }
-export default Rooms;
+export default DefineFloors;

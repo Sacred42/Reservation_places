@@ -9,7 +9,6 @@ const Modal = () => {
     const [number, setNumber] = useState(null);
     const [data, setData] = useState(null);
     const dispatch = useDispatch();
-    // const [place, setPlace] = useState(null);
 
   const ajax = new Ajax();
 
@@ -41,6 +40,7 @@ const Modal = () => {
                     <div className='modal__footer'>
                     <button type='submit'>Забронировать</button>
                     </div>
+                    <div>r</div>
                     </div>
                 </div>
                 </form>

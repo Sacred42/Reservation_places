@@ -1,5 +1,8 @@
 const changeStatus = ({rooms}, value) =>{
-     console.log(rooms[0].props.children);
+     console.log(rooms)
+     console.log(value)
+     const index = rooms.findIndex((elem)=>elem.room === value.room);
+     console.log(index);
 }
 
 const RoomReducer = (state = {room : []} , action) =>{

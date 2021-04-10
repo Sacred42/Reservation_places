@@ -12,7 +12,6 @@ const getRooms = () => async(dispatch) =>{
 }
 
 const changeStatusRoom = (room) => async(dispatch) =>{
-     
      dispatch({type : 'CHANGE_STATUS_ROOM' , payload : transformResource(room)})
 }
 

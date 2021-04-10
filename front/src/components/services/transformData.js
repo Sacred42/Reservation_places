@@ -1,4 +1,4 @@
-import Rooms from '../rooms';
+
 const transformResource = (resource) =>{
     const transformResource = resource[0].map((elem)=>{
       return{
@@ -7,22 +7,10 @@ const transformResource = (resource) =>{
         status : elem.Status
       }
     })
-    return defineFloors(transformResource);
+    return transformResource;
   }
 
-  const defineFloors = (transformResource) =>{
-    const getFloor = [];
-    let nonRepeat = [];
-    transformResource.forEach(({floor})=>{
-      if(nonRepeat.includes(floor)){
-        return;
-      } 
-      nonRepeat.push(floor);
-      getFloor.push(floor);
-    })
-    console.log({qty:getFloor.length ,allrooms: transformResource});
-    return Rooms({qty:getFloor.length ,allrooms: transformResource} );
-  }
+
 
   export {transformResource}
  
