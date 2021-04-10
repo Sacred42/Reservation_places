@@ -1,14 +1,9 @@
 export default class Ajax {
     _base = 'http://localhost:5000';
-
-    sendRequestGet = async(url) =>{
-       const request =  await fetch(`${this._base}${url}`);
-       return request;
-    }
-
-    sendRequestPost = async(url , body) =>{
+    
+    sendRequest = async(url , method , body) =>{
       const request = await fetch(`${this._base}${url}`, {
-        method : 'PUT',
+        method : method,
         mode: 'cors',
         headers : {'Content-Type': 'application/json' },
         body : JSON.stringify(body)
@@ -17,7 +12,7 @@ export default class Ajax {
     }
 
     getResource = async() =>{
-      return this.sendRequestGet('/');
+      return this.sendRequest('/', 'GET');
     }
 
     changeResource = async(number , data) =>{
@@ -25,7 +20,7 @@ export default class Ajax {
         number : number,
         data : data
       }
-      return this.sendRequestPost('/update' , body);
+      return this.sendRequest('/update' , 'PUT', body);
     }
 
 }
