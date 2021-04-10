@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { useDispatch} from 'react-redux';
 import Portal from './portal';
 import Ajax from '../components/services/ajax';
@@ -8,16 +8,24 @@ const Modal = () => {
     const [visible, setVisible] = useState(false);
     const [number, setNumber] = useState(null);
     const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
-  const ajax = new Ajax();
+    const ajax = new Ajax();
+
+   
+    const clear = () =>{
+        setVisible(false);
+        setError(null);
+    }
 
    const loadingData = (e) =>{
         e.preventDefault();
         ajax.changeResource(number, data)
-        .then((resource)=>(resource.json()))
+        .then((data)=>console.log(data))
         .then((room)=>dispatch(changeStatusRoom(room)))
-        .catch((err)=>console.log(err));
+        .then(()=>clear())
+        .catch(({error})=>setError(error));
     }
 
    const modal = visible ? (
@@ -25,7 +33,7 @@ const Modal = () => {
                 <form onSubmit={loadingData}>
                 <div className='modal'>
                     <div className='modal__window'>
-                    <div className='modal__exit' onClick={()=>setVisible(false)}>X</div>
+                    <div className='modal__exit' onClick={clear}>X</div>
                     <h3 className='modal__header'>Выберети свободную комнату</h3>
                     <div className='modal__body'>
                       <div>
@@ -40,7 +48,7 @@ const Modal = () => {
                     <div className='modal__footer'>
                     <button type='submit'>Забронировать</button>
                     </div>
-                    <div>r</div>
+                    {error && <div>{error}</div>}
                     </div>
                 </div>
                 </form>

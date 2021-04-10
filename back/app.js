@@ -26,7 +26,7 @@ app.put('/update', (req, res )=>{
  .then((result)=> checkRoom.checkRoom(result))
  .then((data)=> dboperations.updateResource(data))
  .then((data)=>res.send(data))
- .catch((err)=> res.status(404).send(err));
+ .catch((err)=> res.status(404).send({error : err.message}));
 })
 
 
