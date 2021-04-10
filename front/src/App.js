@@ -1,14 +1,13 @@
 import './App.css';
 import Room from './components/floors';
 import Header from './components/header';
-import { BrowserRouter, Route} from 'react-router-dom';
-
-
+import SuccessWindow from './components/successWindow';
 
 function App() {
   return (
     <div className="App">
       <Header/>
+      <SuccessWindow/>
       <div className='container'>
         <div className='room'>
              <Room/>

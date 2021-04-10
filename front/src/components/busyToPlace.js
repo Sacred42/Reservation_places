@@ -3,6 +3,7 @@ import { useDispatch} from 'react-redux';
 import Portal from './portal';
 import Ajax from '../components/services/ajax';
 import {changeStatusRoom} from './actions/RoomAction';
+import {setVisibleWindow} from  './actions/SuccesWindowAction';
 
 const Modal = () => {
     const [visible, setVisible] = useState(false);
@@ -19,12 +20,16 @@ const Modal = () => {
         setError(null);
     }
 
+    const success = () => {
+        dispatch(setVisibleWindow());
+        clear();
+    }
+
    const loadingData = (e) =>{
         e.preventDefault();
         ajax.changeResource(number, data)
-        .then((data)=>console.log(data))
         .then((room)=>dispatch(changeStatusRoom(room)))
-        .then(()=>clear())
+        .then(()=>success())
         .catch(({error})=>setError(error));
     }
 
@@ -48,7 +53,7 @@ const Modal = () => {
                     <div className='modal__footer'>
                     <button type='submit'>Забронировать</button>
                     </div>
-                    {error && <div>{error}</div>}
+                    {error && <div className='modal__warning'>{error}</div>}
                     </div>
                 </div>
                 </form>

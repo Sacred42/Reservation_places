@@ -1,8 +1,12 @@
 const changeStatus = ({rooms}, value) =>{
-     console.log(rooms)
-     console.log(value)
      const index = rooms.findIndex((elem)=>elem.room === value.room);
-     console.log(index);
+     const oldElem = rooms[index];
+     const newElem = {...oldElem , status : value.status};
+     return [
+         ...rooms.slice(0, index),
+         newElem,
+         ...rooms.slice(index + 1)
+     ]
 }
 
 const RoomReducer = (state = {room : []} , action) =>{

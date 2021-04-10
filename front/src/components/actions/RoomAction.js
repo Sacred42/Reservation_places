@@ -1,5 +1,5 @@
 import Ajax from '../services/ajax';
-import {transformResource} from '../services/transformData';
+import {transformResource , trahsformRoom} from '../services/transformData';
 const ajax = new Ajax();
 
 const getRooms = () => async(dispatch) =>{
@@ -12,7 +12,7 @@ const getRooms = () => async(dispatch) =>{
 
 const changeStatusRoom = (room) => async(dispatch) =>{
      if(room === undefined){ return};
-     dispatch({type : 'CHANGE_STATUS_ROOM' , payload : transformResource(room)})
+     dispatch({type : 'CHANGE_STATUS_ROOM' , payload : trahsformRoom(room)})
 }
 
 export {getRooms , changeStatusRoom};

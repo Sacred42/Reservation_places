@@ -28,7 +28,6 @@ const rooms = (qty, allrooms) =>{
             </ul>)
             )
         }  
-        console.log(rooms);
         return rooms;
 }
 

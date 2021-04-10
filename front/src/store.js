@@ -1,11 +1,14 @@
 import { createStore, applyMiddleware , combineReducers, compose} from 'redux';
 import {RoomReducer} from  './components/reducer/RoomReducer';
+import {SuccessWindowReducer} from './components/reducer/SuccessWindowReducer';
 import thunk from 'redux-thunk';
 
 const reducer = combineReducers({
-  RoomReducer : RoomReducer
+  RoomReducer : RoomReducer,
+  SuccessWindowReducer : SuccessWindowReducer
 })
 
-const store = createStore(reducer , applyMiddleware(thunk));
+const composeEnhncer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer , composeEnhncer(applyMiddleware(thunk)));
 
 export default store;

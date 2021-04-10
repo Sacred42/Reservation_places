@@ -118,3 +118,18 @@ left: 0;
       top: 15px;
       background-color: #fff;
   }
+
+  .modal__warning {
+      color: red;
+      padding-top:10px ;
+  }
+
+  /* setVisibleWindow */
+
+  .successWindow{
+      position: absolute;
+      top: 150px;
+      right: 100px;
+      color: green;
+      font-size: 25px;
+  }
