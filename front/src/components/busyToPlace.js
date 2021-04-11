@@ -3,7 +3,7 @@ import { useDispatch} from 'react-redux';
 import Portal from './portal';
 import Ajax from '../components/services/ajax';
 import {changeStatusRoom} from './actions/RoomAction';
-import {setVisibleWindow} from  './actions/SuccesWindowAction';
+import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowAction';
 
 const Modal = () => {
     const [visible, setVisible] = useState(false);
@@ -18,11 +18,18 @@ const Modal = () => {
     const clear = () =>{
         setVisible(false);
         setError(null);
+        setNumber(null);
+        setData(null);
     }
 
     const success = () => {
         dispatch(setVisibleWindow());
         clear();
+    }
+
+    const openModal = () =>{
+        setVisible(true);
+        dispatch(unSetVisibleWindow());
     }
 
    const loadingData = (e) =>{
@@ -62,7 +69,7 @@ const Modal = () => {
         return(
 
             <div className='modal__btn'>
-            <button onClick={()=>setVisible(true)}>занять место</button>
+            <button onClick={openModal}>занять место</button>
             {modal}
             </div>
         )

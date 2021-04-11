@@ -2,7 +2,6 @@ import React from 'react';
 import {createLabel} from './hoc-function/createLabel';
 
 const DefineFloors = (props) =>{
-    console.log(props)
     if(props === undefined){
         return;
     }

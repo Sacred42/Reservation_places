@@ -2,4 +2,8 @@ const setVisibleWindow = () =>(dispatch) =>{
    dispatch({type : 'SET_VISIBLE'});
 }
 
-export {setVisibleWindow};
+const unSetVisibleWindow = () =>(dispatch)=>{
+   dispatch({type : 'UNSET_VISIBLE'});
+}
+
+export {setVisibleWindow , unSetVisibleWindow};

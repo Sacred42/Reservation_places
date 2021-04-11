@@ -10,6 +10,7 @@ componentDidMount(){
 }
  
 render(){
+  console.log(this.props)
   const { rooms, error, loading} = this.props;
   if(loading){
     return <div>...Loading</div>
