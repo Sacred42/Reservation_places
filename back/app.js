@@ -21,6 +21,11 @@ app.get('/' , (req,res)=>{
      })
 })
 
+app.get('/checkData' , (req,res)=>{
+    dboperations.getBusyPlaces()
+    .then(result=>console.log(result));
+})
+
 app.put('/update', (req, res )=>{
  dboperations.changeResource(req.body)
  .then((result)=> checkRoom.checkRoom(result))

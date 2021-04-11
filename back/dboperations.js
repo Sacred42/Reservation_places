@@ -15,8 +15,13 @@ async function requestToBase(query){
 
 
 async function getResource() {
-    const query = 'SELECT Floor.Name, Room.Name, Room.Status FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId'
+    const query = 'SELECT Floor.Name, Room.Name, Room.Status, Room.Data FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId'
     return requestToBase(query);
+}
+
+async function getBusyPlaces(){
+   const query = `SELECT * FROM Room WHERE Status = 'busy' `
+   return requestToBase(query);
 }
 
 async function changeResource(body){
@@ -33,6 +38,7 @@ async function updateResource(value){
 module.exports = {
     getResource: getResource,
     changeResource : changeResource,
-    updateResource : updateResource
+    updateResource : updateResource,
+    getBusyPlaces : getBusyPlaces
 }
 

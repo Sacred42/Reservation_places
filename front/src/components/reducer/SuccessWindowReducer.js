@@ -1,4 +1,4 @@
-const SuccessWindowReducer = (state = false , action) => {
+const SuccessWindowReducer = (state = {visible : false} , action) => {
   console.log('redux was here!', action.type)
   switch(action.type){
       case 'SET_VISIBLE' :

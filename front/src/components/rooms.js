@@ -36,7 +36,9 @@ const createRoom = (itr , arr) =>{
         if(elem.floor === `${itr + 1} этаж`){
           room.push(
          (<li className={`place place__${elem.status}`} key={elem.room}>
-              <span>{elem.status}</span>
+              <div>{elem.room}</div>
+              <div>{elem.status}</div>
+              <div>{elem.data}</div>
           </li>)
           )
         }

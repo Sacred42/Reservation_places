@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setVisibleWindow} from  './actions/SuccesWindowAction';
 
 class SuccessWindow extends React.Component{
 
@@ -17,8 +16,8 @@ class SuccessWindow extends React.Component{
     }  
 }
 
-const mapStateToProps = ({SuccessWindowReducer}) =>{
-    return SuccessWindowReducer;
+const mapStateToProps = ({SuccessWindowReducer : {visible}}) =>{
+    return {visible};
 }
 
 export default connect(mapStateToProps)(SuccessWindow);

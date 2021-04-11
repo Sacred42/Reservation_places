@@ -14,6 +14,10 @@ export default class Ajax {
       return request;
     }
 
+    checkResource = async() =>{
+      return this.sendRequest('/checkData', 'GET');
+    }
+
     getResource = async() =>{
       return this.sendRequest('/', 'GET');
     }
@@ -23,7 +27,7 @@ export default class Ajax {
         number : number,
         data : data
       }
-      return this.sendRequest('/update' , 'PUT', body)
+      return this.sendRequest('/update' , 'PUT', body);
 
     }
 
