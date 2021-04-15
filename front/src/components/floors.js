@@ -1,6 +1,6 @@
 import React from 'react';
-import {getRooms} from './actions/RoomAction';
-import DefineFloors from './rooms';
+import {getRoomsInitial} from './actions/RoomAction';
+import ViewRoom from './rooms';
 import { connect } from 'react-redux';
 import Ajax from './services/ajax'
 
@@ -9,12 +9,15 @@ class Room extends React.Component{
 ajax = new Ajax();
 
 componentDidMount(){
- this.props.getRooms();
+ this.props.getRoomsInitial();
  this.interval = setInterval(this.ajax.checkResource , 10000);
 }
- 
+
+componentDidUpdate(){
+}
+
 render(){
-  const { rooms, error, loading} = this.props;
+  const {RoomReducer : {rooms , error ,  loading}} = this.props;
   if(loading){
     return <div>...Loading</div>
   }
@@ -22,7 +25,9 @@ render(){
     <div>{error}</div>
   }
     return(
-      <div>{DefineFloors(rooms)}</div> 
+      <div>
+        <ViewRoom rooms = {rooms} />
+      </div> 
     )
  
  }
@@ -30,12 +35,12 @@ render(){
 
 const mapDispatchToProps = (dispatch) =>{
  return{
-  getRooms : ()=> dispatch(getRooms())
+  getRoomsInitial : ()=> dispatch(getRoomsInitial()),
  }
 }
 
 const mapStateToProps = ({RoomReducer}) =>{
-return RoomReducer;
+return {RoomReducer};
 }
 
 

@@ -1,13 +1,30 @@
 import Ajax from '../services/ajax';
-import {transformResource , trahsformRoom} from '../services/transformData';
+import {transformResource , trahsformRoom , defineFloors} from '../services/transformData';
 const ajax = new Ajax();
 
-const getRooms = () => async(dispatch) =>{
+const getRoomsInitial = () => async(dispatch) =>{
+     localStorage.setItem('current_floor' , 1);
      dispatch({type : 'LOADING_ROOMS'});
      ajax.getResource()
      .then((data)=>transformResource(data))
-     .then((data)=>dispatch({type : 'SUCCESS_ROOMS' , payload : data}))
+     .then((data)=>{
+          dispatch({type : 'SUCCESS_ROOMS_INITIAL' , payload : data});
+          dispatch({type : 'GET_FLOORS' , payload : defineFloors(data)});
+     })
      .catch((error)=>dispatch({type : 'FAILURE_ROOMS' , payload : error}))
+}
+
+const getRoomsUseFloor = (id) => async(dispatch) => {
+     localStorage.setItem('current_floor' , id);
+     dispatch({type : 'LOADING_ROOMS'});
+     ajax.getResourceToFloor(id)
+     .then((data=>transformResource(data)))
+     .then((data)=> dispatch({type : 'SUCCESS_ROOMS_TO_FLOOR' , payload : data}))
+     .catch((error)=>dispatch({type : 'FAILURE_ROOMS' , payload : error}))
+}
+
+const getFloors = (rooms) => (dispatch) =>{
+     dispatch({type : 'GET_FLOORS' , payload : rooms})
 }
 
 const changeStatusRoom = (room) => async(dispatch) =>{
@@ -15,4 +32,4 @@ const changeStatusRoom = (room) => async(dispatch) =>{
      dispatch({type : 'CHANGE_STATUS_ROOM' , payload : trahsformRoom(room)})
 }
 
-export {getRooms , changeStatusRoom};
+export {getRoomsInitial ,  getRoomsUseFloor , changeStatusRoom, getFloors};

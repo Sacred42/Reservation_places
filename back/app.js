@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const dboperations = require('./dboperations');
 const checkRoom = require('./middleware/checkRoom')
+const compareDates = require('./middleware/compareDates');
 
 
 app.use((req, res, next) => {
@@ -21,9 +22,18 @@ app.get('/' , (req,res)=>{
      })
 })
 
-app.get('/checkData' , (req,res)=>{
-    dboperations.getBusyPlaces()
-    .then(result=>console.log(result));
+app.get('/:id' , (req , res)=>{
+    const param = req.params;
+    dboperations.getResourceToFloor(param)
+    .then(result =>
+        res.send(result))
+
+})
+
+app.options('/checkData' , (req,res)=>{
+    dboperations.getExpiredRooms()
+    .then(result=>console.log(result))
+    res.send('eweq')
 })
 
 app.put('/update', (req, res )=>{

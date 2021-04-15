@@ -18,8 +18,16 @@ export default class Ajax {
       return this.sendRequest('/checkData', 'GET');
     }
 
+    check = async() =>{
+      return this.sendRequest('/check' , 'GET');
+    }
+
     getResource = async() =>{
       return this.sendRequest('/', 'GET');
+    }
+
+    getResourceToFloor = async(id) =>{
+      return this.sendRequest(`/${id}`, 'GET');
     }
 
     changeResource = async(number , data) =>{

@@ -1,49 +1,31 @@
-import React from 'react';
-import {createLabel} from './hoc-function/createLabel';
+import React, { useState } from 'react';
 
-const DefineFloors = (props) =>{
-    if(props === undefined){
-        return;
-    }
-    const getFloor = [];
-    let nonRepeat = [];
-    props.forEach(({floor})=>{
-      if(nonRepeat.includes(floor)){
-        return;
-      } 
-      nonRepeat.push(floor);
-      getFloor.push(floor);
-    })
-    return rooms(getFloor.length , props );
-  }
 
-const rooms = (qty, allrooms) =>{
+const ViewRoom = (props) => {
 
- let rooms = [];
-        for(let i = 0; i < qty; i++){
-                rooms.push(createLabel
-                (<ul className='inner__room' key={i+1}>
-                {createRoom(i , allrooms)}
-            </ul>)
-            )
-        }  
-        return rooms;
+const {rooms} = props;
+
+const createRoom = (room ) =>{  // формирование комнаты
+ const arrRooms = [];
+ const currentaFloor = localStorage.getItem('current_floor'); 
+ room.forEach((elem)=>{
+     if(elem.floor === `${currentaFloor} этаж`){
+      arrRooms.push(<li className={`place place__${elem.status}`} key={elem.room}>
+       <div>{elem.room}</div>
+       <div>{elem.status}</div>
+       <div>{elem.data}</div>
+     </li>)
+     }
+ })
+ return arrRooms;
+}
+const arrRooms = createRoom(rooms);
+
+  return (
+    <ul className='inner__room'>
+         {arrRooms}
+    </ul>
+  )
 }
 
-const createRoom = (itr , arr) =>{
-    let room = [];
-    arr.forEach((elem)=>{
-        if(elem.floor === `${itr + 1} этаж`){
-          room.push(
-         (<li className={`place place__${elem.status}`} key={elem.room}>
-              <div>{elem.room}</div>
-              <div>{elem.status}</div>
-              <div>{elem.data}</div>
-          </li>)
-          )
-        }
-    })
-
-return room;
-}
-export default DefineFloors;
+export default ViewRoom;

@@ -12,17 +12,25 @@ async function requestToBase(query){
     } 
 }
 
+async function getResourceToFloor ({id}) {
+    const query =  `SELECT Floor.Name, Room.Name, Room.Status, Room.Data FROM Room  INNER JOIN Floor ON Floor.floorId = Room.floorId WHERE Floor.Name = '${id} этаж' `
+    return requestToBase(query);
+}
 
+async function getExpiredRooms(){
+ const query = `UPDATE Room SET Status = 'free' , Data = NULL WHERE Room.Data < CURRENT_TIMESTAMP`;
+ return requestToBase(query);
+}
 
 async function getResource() {
     const query = 'SELECT Floor.Name, Room.Name, Room.Status, Room.Data FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId'
     return requestToBase(query);
 }
 
-async function getBusyPlaces(){
-   const query = `SELECT * FROM Room WHERE Status = 'busy' `
-   return requestToBase(query);
-}
+// async function getBusyPlaces(){
+//    const query = `SELECT * FROM Room WHERE Status = 'busy' `
+//    return requestToBase(query);
+// }
 
 async function changeResource(body){
     const {number, data} = body;
@@ -39,6 +47,8 @@ module.exports = {
     getResource: getResource,
     changeResource : changeResource,
     updateResource : updateResource,
-    getBusyPlaces : getBusyPlaces
+    // getBusyPlaces : getBusyPlaces,
+    getResourceToFloor : getResourceToFloor,
+    getExpiredRooms : getExpiredRooms
 }
 
