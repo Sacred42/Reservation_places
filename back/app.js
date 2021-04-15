@@ -33,7 +33,7 @@ app.get('/:id' , (req , res)=>{
 app.options('/checkData' , (req,res)=>{
     dboperations.getExpiredRooms()
     .then(result=>console.log(result))
-    res.send('eweq')
+    res.send('eweq');
 })
 
 app.put('/update', (req, res )=>{

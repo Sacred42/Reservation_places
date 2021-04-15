@@ -3,7 +3,7 @@ import {transformResource , trahsformRoom , defineFloors} from '../services/tran
 const ajax = new Ajax();
 
 const getRoomsInitial = () => async(dispatch) =>{
-     localStorage.setItem('current_floor' , 1);
+     
      dispatch({type : 'LOADING_ROOMS'});
      ajax.getResource()
      .then((data)=>transformResource(data))
@@ -15,6 +15,7 @@ const getRoomsInitial = () => async(dispatch) =>{
 }
 
 const getRoomsUseFloor = (id) => async(dispatch) => {
+     console.log('why&&');
      localStorage.setItem('current_floor' , id);
      dispatch({type : 'LOADING_ROOMS'});
      ajax.getResourceToFloor(id)

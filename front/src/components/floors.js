@@ -1,5 +1,5 @@
 import React from 'react';
-import {getRoomsInitial} from './actions/RoomAction';
+import {getRoomsInitial , getRoomsUseFloor} from './actions/RoomAction';
 import ViewRoom from './rooms';
 import { connect } from 'react-redux';
 import Ajax from './services/ajax'
@@ -9,11 +9,14 @@ class Room extends React.Component{
 ajax = new Ajax();
 
 componentDidMount(){
+ localStorage.setItem('current_floor' , 1);
  this.props.getRoomsInitial();
- this.interval = setInterval(this.ajax.checkResource , 10000);
+ this.interval = setInterval(this.checkRoomS , 10000);
 }
 
-componentDidUpdate(){
+checkRoomS = () =>{
+  this.ajax.checkResource()
+  .then(()=>this.props.getRoomsInitial())
 }
 
 render(){
@@ -36,6 +39,7 @@ render(){
 const mapDispatchToProps = (dispatch) =>{
  return{
   getRoomsInitial : ()=> dispatch(getRoomsInitial()),
+  getRoomsUseFloor : (id)=> dispatch(getRoomsUseFloor(id))
  }
 }
 

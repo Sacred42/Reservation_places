@@ -12,7 +12,7 @@ function compareDate(arr){
 function getNowData(){
     const nowDate = new Date().toISOString();
     const getMS = Date.parse(nowDate);
-    console.log('new date-',getMS);
+    console.log(getMS);
     return getMS ;
 }
 
@@ -21,7 +21,7 @@ function parseDateFromDB(date){
         return ;
     }
     const getMS = Date.parse(date)
-    console.log('parse date-',getMS);
+    console.log(getMS);
     return getMS;
 }
 
