@@ -39,8 +39,10 @@ async function changeResource(body){
     return requestToBase(query);
 }
 
-async function updateResource(value){
-    const query = `UPDATE Room SET Status = 'busy' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
+async function updateResource(value, date){
+    const splitDates = date.split(' ');
+    console.log(splitDates);
+    const query = `UPDATE Room SET Status = 'busy', Data = '2021-${splitDates[3]}-${splitDates[2]}T${splitDates[0]}:${splitDates[1]}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
     return requestToBase(query);
 }
 module.exports = {

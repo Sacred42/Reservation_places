@@ -26,6 +26,7 @@ const transformResource = (resource) =>{
     return{
       floor : `${room[0][0].floorId} этаж`,
       room : room[0][0].Name,
+      data : transformDates(room[0][0].Data),
       status : room[0][0].Status
     }
   }

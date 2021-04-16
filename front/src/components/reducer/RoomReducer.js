@@ -1,7 +1,8 @@
 const changeStatus = ({rooms}, value) =>{
+    console.log('val is-',value);
      const index = rooms.findIndex((elem)=>elem.room === value.room);
      const oldElem = rooms[index];
-     const newElem = {...oldElem , status : value.status};
+     const newElem = {...oldElem , data : value.data , status : value.status};
      return [
          ...rooms.slice(0, index),
          newElem,

@@ -8,7 +8,7 @@ import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowActi
 const Modal = () => {
     const [visible, setVisible] = useState(false);
     const [number, setNumber] = useState(null);
-    const [data, setData] = useState(null);
+    const [date, setData] = useState(null);
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const Modal = () => {
 
    const loadingData = (e) =>{
         e.preventDefault();
-        ajax.changeResource(number, data)
+        ajax.changeResource(number, date)
         .then((room)=>dispatch(changeStatusRoom(room)))
         .then(()=>success())
         .catch(({error})=>setError(error));
