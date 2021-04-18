@@ -41,7 +41,6 @@ const transformResource = (resource) =>{
       nonRepeat.push(floor);
       getFloor.push(floor);
     })
-    console.log(getFloor.length);
     return getFloor.length ;
   }
 

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 const ViewRoom = (props) => {
 
 const {rooms} = props;
 
-const createRoom = (room ) =>{  // формирование комнаты
+const createRoom = (room) =>{  // формирование комнаты
  const arrRooms = [];
  const currentaFloor = localStorage.getItem('current_floor'); 
  room.forEach((elem)=>{

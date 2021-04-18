@@ -1,3 +1,4 @@
+const moment = require('moment');
 function compareDate(arr){
     const nowDate = getNowData();
     const expiredRooms = [];
@@ -25,6 +26,28 @@ function parseDateFromDB(date){
     return getMS;
 }
 
+function validationDates(date){
+    const formated = createFormatPlusZero(date);
+    const [hour , minutes , day , month] = formated;
+    if( moment(`${month}/${day}/2021 ${hour}:${minutes}`, 'MM/DD/YYYY hh:mm').isValid()){
+      return formated;
+    }
+    else{
+     throw new Error('bad format data!')
+    }  
+}
+
+function createFormatPlusZero(arr){
+    const formatedArr = arr.map((elem)=>{
+        if(elem.length < 2){
+            return '0' + elem;
+        }
+        return elem;
+    })
+    return formatedArr;
+}
+
 module.exports = {
-    compareDate : compareDate
+    compareDate : compareDate,
+    validationDates : validationDates
 }

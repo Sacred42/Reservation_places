@@ -8,18 +8,27 @@ import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowActi
 const Modal = () => {
     const [visible, setVisible] = useState(false);
     const [number, setNumber] = useState(null);
-    const [date, setData] = useState(null);
+    const [day, setDay] = useState(null);
+    const [month, setMonth] = useState(null);
+    const [hour, setHour] = useState(null);
+    const [minutes, setMinutes] = useState(null);
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
     const ajax = new Ajax();
 
+    //  useEffect(()=>{
+
+    //  }, [error])
    
     const clear = () =>{
         setVisible(false);
         setError(null);
         setNumber(null);
-        setData(null);
+        setDay(null);
+        setMonth(null);
+        setHour(null);
+        setMinutes(null);
     }
 
     const success = () => {
@@ -32,12 +41,22 @@ const Modal = () => {
         dispatch(unSetVisibleWindow());
     }
 
+    const checkWriteIn = () =>{
+        const fields = document.querySelectorAll('input');
+        const res = Array.prototype.some.call(fields, (elem)=>elem.value.length === 0);
+        return res;
+    }
+
    const loadingData = (e) =>{
-        e.preventDefault();
-        ajax.changeResource(number, date)
-        .then((room)=>dispatch(changeStatusRoom(room)))
-        .then(()=>success())
-        .catch(({error})=>setError(error));
+            e.preventDefault();
+            if(checkWriteIn()){
+                return setError('write in all fields!');
+            }
+            const date = [hour , minutes , day , month]
+            ajax.changeResource(number, date)
+            .then((room)=>dispatch(changeStatusRoom(room)))
+            .then(()=>success())
+            .catch(({error})=>setError(error));        
     }
 
    const modal = visible ? (
@@ -52,9 +71,32 @@ const Modal = () => {
                           <div>Комната(номер)</div>
                           <input type='text' name='number' id='number' onChange={(e) => setNumber(e.target.value)} ></input>
                       </div>
-                      <div>
-                          <div>Время</div>
-                          <input type='text' name='time' id='number' onChange={(e) => setData(e.target.value)}></input>
+                    <div className="modal__dates">
+                          <header>Дата</header>
+
+                        <div className='modal__dates_day_month'>
+                            <span>
+                              <div>День</div>
+                              <input maxLength="2"   type='text' name='day' id='day' onChange={(e) => setDay(e.target.value)} ></input>
+                             </span>
+                             <span>
+                              <div>Месяц</div>
+                              <input maxLength="2"  type='text' name='month' id='month' onChange={(e) => setMonth(e.target.value)} ></input>
+                             </span>
+                             
+                         </div>
+                         <div className='modal__dates_day_month'>
+                           <span>
+                             <div>Часы</div>
+                             <input maxLength="2"  type='text' name='hour' id='hour' onChange={(e) => setHour(e.target.value)} ></input>
+                          </span>
+                          <span>
+                             <div>Минуты</div>
+                             <input maLength="2"  type='text' name='minutes' id='minutes' onChange={(e) => setMinutes(e.target.value)} ></input>
+                        </span>
+                          </div>
+                    </div>
+                          <div> 
                       </div>
                     </div>
                     <div className='modal__footer'>

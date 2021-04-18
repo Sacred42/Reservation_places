@@ -44,6 +44,7 @@ html{
 
     list-style: none;
     min-width: 150px;
+    min-height: 150px;
     padding: 40px 0px;
     margin:0px 30px 20px 0px ;
     border: 1px solid #000;
@@ -85,8 +86,8 @@ left: 0;
   .modal__window{
       position: relative;
       background-color: #E6E5EB;
-      width: 400px;
-      height: 300px;
+      width: 600px;
+      height: 450px;
       padding: 30px;
   }
 
@@ -124,6 +125,29 @@ left: 0;
       padding-top:10px ;
   }
 
+  .modal__body label {
+      margin-right: 40px ;
+  }
+  
+  .modal__dates{
+      margin-top: 10px;
+  }
+
+  .modal__dates input{
+    width: 25px
+  }
+
+  .modal__dates header {
+      margin-bottom: 10px;
+  }
+
+  .modal__dates_day_month{
+      display: flex;
+  }
+
+  .modal__dates_day_month span{
+      padding: 7px;
+  }
   /* setVisibleWindow */
 
   .successWindow{
