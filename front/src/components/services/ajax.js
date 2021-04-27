@@ -1,5 +1,5 @@
 export default class Ajax {
-    _base = 'http://localhost:5000';
+    _base = 'http://localhost:3001';
 
     sendRequest = async(url , method , body) =>{
       const request = await fetch(`${this._base}${url}`, {

@@ -1,3 +1,4 @@
+import React  from 'react';
 const createSelect = (qty) => {
     const arrOption = [];
     for(let i = 0; i < qty; i++ ){

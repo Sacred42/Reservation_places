@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import Room from './components/floors';
 import Header from './components/header';
 import SuccessWindow from './components/successWindow';

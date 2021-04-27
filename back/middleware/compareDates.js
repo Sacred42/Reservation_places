@@ -49,5 +49,5 @@ function createFormatPlusZero(arr){
 
 module.exports = {
     compareDate : compareDate,
-    validationDates : validationDates
+        validationDates : validationDates
 }

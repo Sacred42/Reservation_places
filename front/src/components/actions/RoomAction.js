@@ -1,7 +1,6 @@
 import Ajax from '../services/ajax';
 import {transformResource , trahsformRoom , defineFloors} from '../services/transformData';
 const ajax = new Ajax();
-
 const getRoomsInitial = () => async(dispatch) =>{
      dispatch({type : 'LOADING_ROOMS'});
      ajax.getResource()
