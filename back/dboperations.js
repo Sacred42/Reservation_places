@@ -14,7 +14,7 @@ async function requestToBase(query){
 }
 
 async function getResourceToFloor ({id}) {
-    const query =  `SELECT Floor.Name, Room.Name, Room.Status, Room.Data FROM Room  INNER JOIN Floor ON Floor.floorId = Room.floorId WHERE Floor.Name = '${id} этаж' `
+    const query =  `SELECT Floor.Name, Room.Name, Room.Status, Room.Data , Room.ActiveUser FROM Room  INNER JOIN Floor ON Floor.floorId = Room.floorId WHERE Floor.Name = '${id} этаж' `
     return requestToBase(query);
 }
 
@@ -24,7 +24,7 @@ async function getExpiredRooms(){
 }
 
 async function getResource() {
-    const query = 'SELECT Floor.Name, Room.Name, Room.Status, Room.Data FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId'
+    const query = 'SELECT Floor.Name, Room.Name, Room.Status, Room.Data, Room.ActiveUser  FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId'
     return requestToBase(query);
 }
 
@@ -34,15 +34,15 @@ async function getResource() {
 // }
 
 async function changeResource(body){
-    const {number, date} = body;
+    const {number} = body;
     const query = `SELECT * FROM Room WHERE Name = 'комната ${number}'`;
     return requestToBase(query);
 }
 
-async function updateResource(value, date){
+async function updateResource(value, date , activeUser){
     const formatedDates = validationDates.validationDates(date);
     const [hour , minutes , day , month] = formatedDates;
-    const query = `UPDATE Room SET Status = 'busy', Data = '2021-${month}-${day}T${hour}:${minutes}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
+    const query = `UPDATE Room SET ActiveUser = '${activeUser}', Status = 'busy', Data = '2021-${month}-${day}T${hour}:${minutes}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
     return requestToBase(query);
 }
 module.exports = {

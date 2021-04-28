@@ -1,11 +1,15 @@
 
 const transformResource = (resource) =>{
+  console.log('that is resource', resource);
     const transformResource = resource[0].map((elem)=>{
       return{
         floor : elem.Name[0],
         room : elem.Name[1],
         data : transformDates(elem.Data),
-        status : elem.Status
+        status : elem.Status,
+
+        user : elem.ActiveUser
+
       }
     })
     return transformResource ;
@@ -27,7 +31,8 @@ const transformResource = (resource) =>{
       floor : `${room[0][0].floorId} этаж`,
       room : room[0][0].Name,
       data : transformDates(room[0][0].Data),
-      status : room[0][0].Status
+      status : room[0][0].Status, 
+      user : room[0][0].ActiveUser
     }
   }
 

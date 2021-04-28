@@ -40,10 +40,11 @@ app.options('/checkData' , (req,res)=>{
 })
 
 app.put('/update', (req, res )=>{
- const {date} = req.body;
+ console.log(req.body);
+ const {date , activeUser} = req.body;
  dboperations.changeResource(req.body)
  .then((result)=> checkRoom.checkRoom(result))
- .then((data)=> dboperations.updateResource(data , date))
+ .then((data)=> dboperations.updateResource(data , date , activeUser))
  .then((data)=>res.send(data))
  .catch((err)=> res.status(404).send({error : err.message}));
 })

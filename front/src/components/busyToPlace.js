@@ -52,8 +52,9 @@ const Modal = () => {
             if(checkWriteIn()){
                 return setError('write in all fields!');
             }
+            const activeUser = localStorage.getItem('user')
             const date = [hour , minutes , day , month]
-            ajax.changeResource(number, date)
+            ajax.changeResource(number, date, activeUser)
             .then((room)=>dispatch(changeStatusRoom(room)))
             .then(()=>success())
             .catch(({error})=>setError(error));        

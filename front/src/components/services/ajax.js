@@ -30,10 +30,11 @@ export default class Ajax {
       return this.sendRequest(`/${id}`, 'GET');
     }
 
-    changeResource = async(number , date) =>{
+    changeResource = async(number , date , activeUser) =>{
       const body ={
         number : number,
-        date : date
+        date : date,
+        activeUser : activeUser
       }
       return this.sendRequest('/update' , 'PUT', body);
 
