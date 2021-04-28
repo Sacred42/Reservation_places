@@ -9,14 +9,15 @@ const compareDates = require('./middleware/compareDates');
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', "content-type" , ['*']);
+    res.append('Access-Control-Allow-Headers', "content-type" , "Cache-Control" , ['*']);
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
     next();
 });
 app.use(express.json());
 app.use(express.static(path.join(__dirname , 'static')));
 
 app.get('/' , (req,res)=>{
-   
+    console.log('i was here');
     dboperations.getResource()
     .then(result => {
         res.send(result);
@@ -32,9 +33,10 @@ app.get('/:id' , (req , res)=>{
 })
 
 app.options('/checkData' , (req,res)=>{
+    console.log(new Date());
     dboperations.getExpiredRooms()
-    .then(result=>console.log(result))
-    res.send('eweq');
+    .then(result=>res.send(JSON.stringify('success')));
+    
 })
 
 app.put('/update', (req, res )=>{

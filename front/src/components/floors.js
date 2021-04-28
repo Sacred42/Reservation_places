@@ -22,6 +22,10 @@ checkRoomS = () =>{
   .then(()=>this.props.getRoomsInitial())
 }
 
+componentDidUpdate(){
+  console.log('update');
+}
+
 render(){
   const {RoomReducer : {rooms , error ,  loading}} = this.props;
   if(loading){

@@ -2,10 +2,10 @@ import React from 'react';
 
 
 const ViewRoom = (props) => {
-console.log('kek');
 const {rooms} = props;
 
 const createRoom = (room) =>{  // формирование комнаты
+  console.log(localStorage.getItem('user'));
  const arrRooms = [];
  const currentaFloor = localStorage.getItem('current_floor'); 
  room.forEach((elem)=>{

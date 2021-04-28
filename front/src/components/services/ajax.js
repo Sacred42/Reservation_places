@@ -5,7 +5,7 @@ export default class Ajax {
       const request = await fetch(`${this._base}${url}`, {
         method : method,
         mode: 'cors',
-        headers : {'Content-Type': 'application/json' },
+        headers : {'Content-Type': 'application/json' , 'Cache-Control': 'no-cache, no-store, must-revalidate' },
         body : JSON.stringify(body)
       })
       .then((data)=> data.status <= 200 ? data.json(): 
@@ -15,7 +15,7 @@ export default class Ajax {
     }
 
     checkResource = async() =>{
-      return this.sendRequest('/checkData', 'GET');
+      return this.sendRequest('/checkData', 'OPTIONS');
     }
 
     check = async() =>{
