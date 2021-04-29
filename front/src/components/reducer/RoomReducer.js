@@ -9,6 +9,18 @@ const changeStatus = ({rooms}, value) =>{
      ]
 }
 
+const unBusyPlace = ({rooms}, value)=>{
+    console.log('that is value-', value)
+    const index = rooms.findIndex((elem)=>elem.room === value.room);
+    const oldElem = rooms[index];
+    const newElem = {...oldElem , data : null , status : 'free', user : null};
+    return [
+        ...rooms.slice(0, index),
+        newElem,
+        ...rooms.slice(index + 1)
+    ]
+}
+
 const RoomReducer = (state = {rooms : []} , action) =>{
     switch(action.type){
       case 'LOADING_ROOMS':
@@ -39,6 +51,10 @@ const RoomReducer = (state = {rooms : []} , action) =>{
             return {
                 rooms : changeStatus(state, action.payload)
             }
+        case 'UNBUSY_ROOM' : 
+             return {
+                 rooms : unBusyPlace(state, action.payload)
+             }
         default :
         return state
     }

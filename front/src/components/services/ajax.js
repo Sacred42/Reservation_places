@@ -30,6 +30,13 @@ export default class Ajax {
       return this.sendRequest(`/${id}`, 'GET');
     }
 
+    unBusyPlace = (number) =>{
+      const body = {
+        number : number
+      }
+      return this.sendRequest('/unbusy' , 'PUT' , body)
+    }
+
     changeResource = async(number , date , activeUser) =>{
       const body ={
         number : number,

@@ -11,7 +11,7 @@ ajax = new Ajax();
 
 componentDidMount(){
 //  const computerName = this.network.computerName;
-//  console.log('that is computer name-',computerName)
+ console.log('that is computer userName-', localStorage.getItem('user'))
  localStorage.setItem('current_floor' , 1);
  this.props.getRoomsInitial();
  this.interval = setInterval(this.checkRoomS , 10000);
@@ -21,6 +21,7 @@ checkRoomS = () =>{
   this.ajax.checkResource()
   .then(()=>this.props.getRoomsInitial())
 }
+
 
 componentDidUpdate(){
   console.log('update');

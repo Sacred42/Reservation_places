@@ -39,6 +39,11 @@ app.options('/checkData' , (req,res)=>{
     
 })
 
+app.put('/unbusy' , (req,res)=>{
+    dboperations.unBusyPlace(req.body)
+    .then((data)=>res.send(data));
+})
+
 app.put('/update', (req, res )=>{
  console.log(req.body);
  const {date , activeUser} = req.body;

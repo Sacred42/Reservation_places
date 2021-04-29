@@ -1,23 +1,35 @@
 import React from 'react';
+import Ajax from './services/ajax';
+import {unBusyPlace} from './actions/RoomAction';
+import { useDispatch } from 'react-redux';
 
 
 const ViewRoom = (props) => {
 const {rooms} = props;
+const ajax = new Ajax();
+const dispatch = useDispatch();
+
+const unBusy = (room) =>{
+   
+   ajax.unBusyPlace(room)
+   .then((data)=>dispatch(unBusyPlace(data)))
+   .catch(err=>err);
+   
+}
 
 const createRoom = (room) =>{  // формирование комнаты
- console.log('from create room', room);
  const arrRooms = [];
  const busyPlace = 'my place!';
  const currentaFloor = localStorage.getItem('current_floor'); 
  room.forEach((elem)=>{
      if(elem.floor === `${currentaFloor} этаж`){
       const ActiveUser = localStorage.getItem('user') === elem.user;
-      console.log(ActiveUser);
       arrRooms.push(<li className={`place place__${elem.status}`} key={elem.room}>
        <div>{elem.room}</div>
        <div>{elem.status}</div>
        <div>{elem.data}</div>
-       <div>{ActiveUser && busyPlace}</div>
+       {ActiveUser && <button onClick={()=>unBusy(elem.room)}>unbusy</button>}
+       
      </li>)
      }
  })

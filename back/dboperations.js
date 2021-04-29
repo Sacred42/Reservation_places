@@ -28,6 +28,14 @@ async function getResource() {
     return requestToBase(query);
 }
 
+async function unBusyPlace(room)
+{
+    const{number} = room;
+    console.log(number);
+    const query = `UPDATE Room SET ActiveUser = NULL, Data = NULL, Status = 'free' WHERE Name = '${number}' SELECT * FROM Room WHERE Name = '${number}' `;
+    return requestToBase(query);
+}
+
 // async function getBusyPlaces(){
 //    const query = `SELECT * FROM Room WHERE Status = 'busy' `
 //    return requestToBase(query);
@@ -51,6 +59,8 @@ module.exports = {
     updateResource : updateResource,
     // getBusyPlaces : getBusyPlaces,
     getResourceToFloor : getResourceToFloor,
-    getExpiredRooms : getExpiredRooms
+    getExpiredRooms : getExpiredRooms,
+
+    unBusyPlace : unBusyPlace
 }
 
