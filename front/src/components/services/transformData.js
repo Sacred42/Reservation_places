@@ -1,6 +1,5 @@
 
 const transformResource = (resource) =>{
-  console.log('that is resource', resource);
     const transformResource = resource[0].map((elem)=>{
       return{
         floor : elem.Name[0],

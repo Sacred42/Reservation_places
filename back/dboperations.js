@@ -19,7 +19,7 @@ async function getResourceToFloor ({id}) {
 }
 
 async function getExpiredRooms(){
- const query = `UPDATE Room SET Status = 'free' , Data = NULL WHERE Room.Data < CURRENT_TIMESTAMP`;
+ const query = `UPDATE Room SET ActiveUser = NULL, Status = 'free' , Data = NULL WHERE Room.Data < CURRENT_TIMESTAMP`;
  return requestToBase(query);
 }
 
@@ -57,7 +57,6 @@ module.exports = {
     getResource: getResource,
     changeResource : changeResource,
     updateResource : updateResource,
-    // getBusyPlaces : getBusyPlaces,
     getResourceToFloor : getResourceToFloor,
     getExpiredRooms : getExpiredRooms,
 

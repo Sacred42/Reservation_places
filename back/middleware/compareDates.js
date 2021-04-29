@@ -17,6 +17,17 @@ function getNowData(){
     return getMS ;
 }
 
+function checkPresentData (date){
+    const[hour, minutes, day, month] = date;
+    const newMonth = parseInt(month) - 1;
+    const newDate = new Date(2021, newMonth, day , hour , minutes);
+    const dateNow = new Date();
+    if(newDate < dateNow){
+        throw new Error('date from past is prevent!');
+    }
+    return date;
+}
+
 function parseDateFromDB(date){
     if(date === null){
         return ;
@@ -30,7 +41,7 @@ function validationDates(date){
     const formated = createFormatPlusZero(date);
     const [hour , minutes , day , month] = formated;
     if( moment(`${month}/${day}/2021 ${hour}:${minutes}`, 'MM/DD/YYYY hh:mm').isValid()){
-      return formated;
+      return checkPresentData(formated);
     }
     else{
      throw new Error('bad format data!')

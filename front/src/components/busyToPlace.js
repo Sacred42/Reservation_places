@@ -14,12 +14,8 @@ const Modal = () => {
     const [minutes, setMinutes] = useState(null);
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
-
     const ajax = new Ajax();
 
-    //  useEffect(()=>{
-
-    //  }, [error])
    
     const clear = () =>{
         setVisible(false);

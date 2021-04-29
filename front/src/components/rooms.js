@@ -19,7 +19,6 @@ const unBusy = (room) =>{
 
 const createRoom = (room) =>{  // формирование комнаты
  const arrRooms = [];
- const busyPlace = 'my place!';
  const currentaFloor = localStorage.getItem('current_floor'); 
  room.forEach((elem)=>{
      if(elem.floor === `${currentaFloor} этаж`){
