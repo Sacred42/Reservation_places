@@ -22,7 +22,8 @@ const transformResource = (resource) =>{
     const hours = date[11] + date[12];
     const day = date[8] + date[9];
     const month = date[5] + date[6];
-    return `До ${day}.${month} ${hours}:${minutes}`;
+    const year = date[2] + date[3];
+    return `До ${day}.${month}.${year} ${hours}:${minutes}`;
   }
 
   const trahsformRoom = (room) =>{

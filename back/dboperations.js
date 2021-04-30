@@ -49,8 +49,8 @@ async function changeResource(body){
 
 async function updateResource(value, date , activeUser){
     const formatedDates = validationDates.validationDates(date);
-    const [hour , minutes , day , month] = formatedDates;
-    const query = `UPDATE Room SET ActiveUser = '${activeUser}', Status = 'busy', Data = '2021-${month}-${day}T${hour}:${minutes}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
+    const [hour , minutes , day , month, year] = formatedDates;
+    const query = `UPDATE Room SET ActiveUser = '${activeUser}', Status = 'busy', Data = '${year}-${month}-${day}T${hour}:${minutes}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
     return requestToBase(query);
 }
 module.exports = {

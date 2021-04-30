@@ -1,8 +1,8 @@
 import './App.css';
 import React from 'react';
-import Room from './components/floors';
-import Header from './components/header';
-import SuccessWindow from './components/successWindow';
+import Room from './components/GetRooms';
+import Header from './components/Header';
+import SuccessWindow from './components/SuccessWindow';
 import Select from './components/Select';
 
 function App() {

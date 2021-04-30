@@ -1,7 +1,7 @@
-import React, {useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch} from 'react-redux';
-import Portal from './portal';
-import Ajax from '../components/services/ajax';
+import Portal from './Portal';
+import Ajax from './services/ajax';
 import {changeStatusRoom} from './actions/RoomAction';
 import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowAction';
 
@@ -13,6 +13,7 @@ const Modal = () => {
     const [hour, setHour] = useState(null);
     const [minutes, setMinutes] = useState(null);
     const [error, setError] = useState(null);
+    const [year, setYear] = useState(null);
     const dispatch = useDispatch();
     const ajax = new Ajax();
 
@@ -49,7 +50,7 @@ const Modal = () => {
                 return setError('write in all fields!');
             }
             const activeUser = localStorage.getItem('user')
-            const date = [hour , minutes , day , month]
+            const date = [hour , minutes , day , month , `20${year}`]
             ajax.changeResource(number, date, activeUser)
             .then((room)=>dispatch(changeStatusRoom(room)))
             .then(()=>success())
@@ -92,6 +93,16 @@ const Modal = () => {
                              <input maLength="2"  type='text' name='minutes' id='minutes' onChange={(e) => setMinutes(e.target.value)} ></input>
                         </span>
                           </div>
+                          <div className='modal__dates_year'>
+                          <div>
+                             <div className ='label_year'>Год</div>
+                             <div className ='year'>
+                             <label>20</label>
+                             <input maxLength="2"  type='text' name='year' id='year' onChange={(e) => setYear(e.target.value)} ></input>
+                             </div>
+                          </div>
+                          </div>
+
                     </div>
                           <div> 
                       </div>

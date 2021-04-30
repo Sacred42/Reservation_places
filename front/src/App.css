@@ -43,8 +43,8 @@ html{
 .place{
 
     list-style: none;
-    min-width: 150px;
-    min-height: 150px;
+    min-width: 180px;
+    min-height: 180px;
     padding: 40px 0px;
     margin:0px 30px 20px 0px ;
     border: 1px solid #000;
@@ -134,7 +134,7 @@ left: 0;
   }
 
   .modal__dates input{
-    width: 25px
+    width: 25px;
   }
 
   .modal__dates header {
@@ -147,6 +147,13 @@ left: 0;
 
   .modal__dates_day_month span{
       padding: 7px;
+  }
+  .label_year{
+    margin-left : 35px;
+  }
+
+  .year label {
+      margin:0px 0px 0px 25px;
   }
   /* setVisibleWindow */
 
