@@ -2,6 +2,7 @@ import React from 'react';
 import Ajax from './services/ajax';
 import {unBusyPlace} from './actions/RoomAction';
 import { useDispatch } from 'react-redux';
+import {openWindow} from './actions/ModalWindowActions'
 
 
 const ViewRoom = (props) => {
@@ -28,6 +29,7 @@ const createRoom = (room) =>{  // формирование комнаты
        <div>{elem.status}</div>
        <div>{elem.data}</div>
        {ActiveUser && <button onClick={()=>unBusy(elem.room)}>unbusy</button>}
+       {ActiveUser && <button onClick={()=>dispatch(openWindow())}>test</button>}
        
      </li>)
      }

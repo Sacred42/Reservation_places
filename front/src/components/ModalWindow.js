@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import Portal from './Portal';
 import Ajax from './services/ajax';
 import {changeStatusRoom} from './actions/RoomAction';
 import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowAction';
+import {openWindow , closeWindow} from './actions/ModalWindowActions';
 
 const Modal = () => {
-    const [visible, setVisible] = useState(false);
+    const state = useSelector(state =>state.ModalWindow)
+    const {visible} = state;
     const [number, setNumber] = useState(null);
     const [day, setDay] = useState(null);
     const [month, setMonth] = useState(null);
@@ -16,11 +18,10 @@ const Modal = () => {
     const [year, setYear] = useState(null);
     const dispatch = useDispatch();
     const ajax = new Ajax();
-    const test = 'test';
 
    
     const clear = () =>{
-        setVisible(false);
+        dispatch(closeWindow());
         setError(null);
         setNumber(null);
         setDay(null);
@@ -35,7 +36,7 @@ const Modal = () => {
     }
 
     const openModal = () =>{
-        setVisible(true);
+        dispatch(openWindow());
         dispatch(unSetVisibleWindow());
     }
 
