@@ -9,7 +9,9 @@ const ViewRoom = (props) => {
 const {rooms} = props;
 const ajax = new Ajax();
 const dispatch = useDispatch();
-
+const template = () =>{
+  <div>я из комнаты!</div>
+}
 const unBusy = (room) =>{
    
    ajax.unBusyPlace(room)
@@ -29,7 +31,7 @@ const createRoom = (room) =>{  // формирование комнаты
        <div>{elem.status}</div>
        <div>{elem.data}</div>
        {ActiveUser && <button onClick={()=>unBusy(elem.room)}>unbusy</button>}
-       {ActiveUser && <button onClick={()=>dispatch(openWindow())}>test</button>}
+       {ActiveUser && <button onClick={()=>dispatch(openWindow('FromRoom'))}>test</button>}
        
      </li>)
      }

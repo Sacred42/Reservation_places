@@ -5,10 +5,12 @@ import Ajax from './services/ajax';
 import {changeStatusRoom} from './actions/RoomAction';
 import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowAction';
 import {openWindow , closeWindow} from './actions/ModalWindowActions';
+import Templates from './services/templates/templates';
 
 const Modal = () => {
     const state = useSelector(state =>state.ModalWindow)
-    const {visible} = state;
+    const {visible , template} = state;
+    console.log('teat is temp,-',template)
     const [number, setNumber] = useState(null);
     const [day, setDay] = useState(null);
     const [month, setMonth] = useState(null);
@@ -18,7 +20,7 @@ const Modal = () => {
     const [year, setYear] = useState(null);
     const dispatch = useDispatch();
     const ajax = new Ajax();
-
+    
    
     const clear = () =>{
         dispatch(closeWindow());
@@ -36,7 +38,7 @@ const Modal = () => {
     }
 
     const openModal = () =>{
-        dispatch(openWindow());
+        dispatch(openWindow('BusyPlace'));
         dispatch(unSetVisibleWindow());
     }
 
@@ -110,6 +112,7 @@ const Modal = () => {
                       </div>
                     </div>
                     <div className='modal__footer'>
+                    <Templates template = {template} />
                     <button type='submit'>Забронировать</button>
                     </div>
                     {error && <div className='modal__warning'>{error}</div>}

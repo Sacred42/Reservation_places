@@ -2,7 +2,8 @@ import React from 'react';
 import {getRoomsInitial , getRoomsUseFloor} from './actions/RoomAction';
 import ViewRoom from './CreateRooms';
 import { connect } from 'react-redux';
-import Ajax from './services/ajax'
+import Ajax from './services/ajax' ;
+
 
 class Room extends React.Component{
 ajax = new Ajax();
