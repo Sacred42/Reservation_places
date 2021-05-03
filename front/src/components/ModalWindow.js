@@ -16,6 +16,7 @@ const Modal = () => {
     const [year, setYear] = useState(null);
     const dispatch = useDispatch();
     const ajax = new Ajax();
+    const test = 'test';
 
    
     const clear = () =>{
