@@ -17,7 +17,7 @@ const transformResource = (resource) =>{
   const transformDates = (date) =>{
     if(date === null){
       return ;
-    }
+    } 
     const minutes = date[14] + date[15];
     const hours = date[11] + date[12];
     const day = date[8] + date[9];

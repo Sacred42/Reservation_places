@@ -13,7 +13,7 @@ function App() {
       <div className='container'>
         <div className='room'>
              <Select/>
-             <Room/>
+               <Room/>
         </div>
       </div>
     </div>

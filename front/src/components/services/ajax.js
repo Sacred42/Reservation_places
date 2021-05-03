@@ -26,6 +26,13 @@ export default class Ajax {
       return this.sendRequest('/', 'GET');
     }
 
+    changeDate = async(room) =>{
+      const body = {
+        room : room
+      }
+      return this.sendRequest('/changeDate' , 'PUT' , body)
+    }
+
     getResourceToFloor = async(id) =>{
       return this.sendRequest(`/${id}`, 'GET');
     }
