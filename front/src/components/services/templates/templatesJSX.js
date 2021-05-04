@@ -1,9 +1,8 @@
 import React from 'react';
 const templates = (templ) => {
-    console.log('from templ switxh-', templ);
     const {template} = templ;
     switch(template){
-        case 'BusyPlace' : 
+        case 'changeResource' : 
         return (
             <div>
                  <div>
@@ -48,7 +47,7 @@ const templates = (templ) => {
                           <div> 
                       </div>
             </div>
-        );
+        )
         case 'FromRoom' : 
         return (
             <div>я из комнаты</div>

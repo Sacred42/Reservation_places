@@ -5,30 +5,21 @@ import Ajax from './services/ajax';
 import {changeStatusRoom} from './actions/RoomAction';
 import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowAction';
 import {openWindow , closeWindow} from './actions/ModalWindowActions';
-import Templates from './services/templates/templates';
+import TemplatesJSX from './services/templates/templatesJSX';
+import TemplatesFn from './services/templates/templatesFunctions';
 
 const Modal = () => {
+    const [error, setError] = useState(null);
     const state = useSelector(state =>state.ModalWindow)
     const {visible , template} = state;
-    const [number, setNumber] = useState(null);
-    const [day, setDay] = useState(null);
-    const [month, setMonth] = useState(null);
-    const [hour, setHour] = useState(null);
-    const [minutes, setMinutes] = useState(null);
-    const [error, setError] = useState(null);
-    const [year, setYear] = useState(null);
+    const functions = TemplatesFn(template);
+    const {request, func} = functions;
     const dispatch = useDispatch();
-    const ajax = new Ajax();
+
     
    
     const clear = () =>{
         dispatch(closeWindow());
-        setError(null);
-        setNumber(null);
-        setDay(null);
-        setMonth(null);
-        setHour(null);
-        setMinutes(null);
     }
 
     const success = () => {
@@ -37,7 +28,7 @@ const Modal = () => {
     }
 
     const openModal = () =>{
-        dispatch(openWindow('BusyPlace'));
+        dispatch(openWindow('changeResource'));
         dispatch(unSetVisibleWindow());
     }
 
@@ -60,8 +51,8 @@ const Modal = () => {
             }
             const activeUser = localStorage.getItem('user')
             const date = parseNodeList(document.querySelectorAll('input'));
-            ajax.changeResource(date, activeUser)
-            .then((room)=>dispatch(changeStatusRoom(room)))
+            request(date, activeUser)
+            .then((room)=>dispatch(func(room)))
             .then(()=>success())
             .catch(({error})=>setError(error));        
     }
@@ -74,7 +65,7 @@ const Modal = () => {
                     <div className='modal__exit' onClick={clear}>X</div>
                     <h3 className='modal__header'>Выберети свободную комнату</h3>
                     <div className='modal__body'>
-                    <Templates template = {template} />
+                    <TemplatesJSX template = {template} />
                     </div>
                     <div className='modal__footer'>
                     
