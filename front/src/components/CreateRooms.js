@@ -9,9 +9,6 @@ const ViewRoom = (props) => {
 const {rooms} = props;
 const ajax = new Ajax();
 const dispatch = useDispatch();
-const template = () =>{
-  <div>я из комнаты!</div>
-}
 const unBusy = (room) =>{
    
    ajax.unBusyPlace(room)

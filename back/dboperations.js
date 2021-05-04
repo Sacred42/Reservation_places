@@ -41,16 +41,17 @@ async function unBusyPlace(room)
 //    return requestToBase(query);
 // }
 
-async function changeResource(body){
-    const {number} = body;
+async function changeResource({date}){
+    const {number} = date ;
     const query = `SELECT * FROM Room WHERE Name = 'комната ${number}'`;
     return requestToBase(query);
 }
 
-async function updateResource(value, date , activeUser){
-    const formatedDates = validationDates.validationDates(date);
-    const [hour , minutes , day , month, year] = formatedDates;
-    const query = `UPDATE Room SET ActiveUser = '${activeUser}', Status = 'busy', Data = '${year}-${month}-${day}T${hour}:${minutes}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
+async function updateResource(value, {day , month, hour, minutes, year} , activeUser){
+    const formatedDates = validationDates.validationDates(day , month, hour, minutes, year);
+    console.log(formatedDates);
+    const [ dayD, monthD, hourD, minutesD, yearD] = formatedDates;
+    const query = `UPDATE Room SET ActiveUser = '${activeUser}', Status = 'busy', Data = '20${yearD}-${monthD}-${dayD}T${hourD}:${minutesD}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
     return requestToBase(query);
 }
 module.exports = {

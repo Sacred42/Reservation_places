@@ -18,9 +18,9 @@ function getNowData(){
 }
 
 function checkPresentData (date){
-    const[hour, minutes, day, month, year] = date;
+    const[day, month, hour, minutes, year] = date;
     const newMonth = parseInt(month) - 1;
-    const newDate = new Date(year, newMonth, day , hour , minutes);
+    const newDate = new Date(`20${year}`, newMonth, day , hour , minutes);
     const dateNow = new Date();
     if(newDate < dateNow){
         throw new Error('date from past is prevent!');
@@ -37,10 +37,10 @@ function parseDateFromDB(date){
     return getMS;
 }
 
-function validationDates(date){
-    const formated = createFormatPlusZero(date);
-    const [hour , minutes , day , month , year] = formated;
-    if( moment(`${month}/${day}/${year} ${hour}:${minutes}`, 'MM/DD/YYYY hh:mm').isValid()){
+function validationDates(){
+    const formated = createFormatPlusZero([...arguments]);
+    const [day, month, hour, minutes, year] = formated;
+    if( moment(`${month}/${day}/20${year} ${hour}:${minutes}`, 'MM/DD/YYYY hh:mm').isValid()){
       return checkPresentData(formated);
     }
     else{
@@ -49,8 +49,10 @@ function validationDates(date){
 }
 
 function createFormatPlusZero(arr){
+    console.log('that arr-', arr)
+    
     const formatedArr = arr.map((elem)=>{
-        if(elem.length < 2){
+        if(elem.length < 2 ){
             return '0' + elem;
         }
         return elem;

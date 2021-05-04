@@ -37,9 +37,8 @@ export default class Ajax {
       return this.sendRequest('/unbusy' , 'PUT' , body)
     }
 
-    changeResource = async(number , date , activeUser) =>{
+    changeResource = async(date , activeUser) =>{
       const body ={
-        number : number,
         date : date,
         activeUser : activeUser
       }

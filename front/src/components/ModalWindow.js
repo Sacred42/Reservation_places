@@ -10,7 +10,6 @@ import Templates from './services/templates/templates';
 const Modal = () => {
     const state = useSelector(state =>state.ModalWindow)
     const {visible , template} = state;
-    console.log('teat is temp,-',template)
     const [number, setNumber] = useState(null);
     const [day, setDay] = useState(null);
     const [month, setMonth] = useState(null);
@@ -48,14 +47,20 @@ const Modal = () => {
         return res;
     }
 
+    const parseNodeList = (list) =>{
+        const date = {};
+        Array.prototype.forEach.call(list, (elem)=>date[elem.name] = elem.value);
+        return date;  
+    }
+
    const loadingData = (e) =>{
             e.preventDefault();
             if(checkWriteIn()){
                 return setError('write in all fields!');
             }
             const activeUser = localStorage.getItem('user')
-            const date = [hour , minutes , day , month , `20${year}`]
-            ajax.changeResource(number, date, activeUser)
+            const date = parseNodeList(document.querySelectorAll('input'));
+            ajax.changeResource(date, activeUser)
             .then((room)=>dispatch(changeStatusRoom(room)))
             .then(()=>success())
             .catch(({error})=>setError(error));        
@@ -69,50 +74,10 @@ const Modal = () => {
                     <div className='modal__exit' onClick={clear}>X</div>
                     <h3 className='modal__header'>Выберети свободную комнату</h3>
                     <div className='modal__body'>
-                      <div>
-                          <div>Комната(номер)</div>
-                          <input type='text' name='number' id='number' onChange={(e) => setNumber(e.target.value)} ></input>
-                      </div>
-                    <div className="modal__dates">
-                          <header>Дата</header>
-
-                        <div className='modal__dates_day_month'>
-                            <span>
-                              <div>День</div>
-                              <input maxLength="2"   type='text' name='day' id='day' onChange={(e) => setDay(e.target.value)} ></input>
-                             </span>
-                             <span>
-                              <div>Месяц</div>
-                              <input maxLength="2"  type='text' name='month' id='month' onChange={(e) => setMonth(e.target.value)} ></input>
-                             </span>
-                             
-                         </div>
-                         <div className='modal__dates_day_month'>
-                           <span>
-                             <div>Часы</div>
-                             <input maxLength="2"  type='text' name='hour' id='hour' onChange={(e) => setHour(e.target.value)} ></input>
-                          </span>
-                          <span>
-                             <div>Минуты</div>
-                             <input maLength="2"  type='text' name='minutes' id='minutes' onChange={(e) => setMinutes(e.target.value)} ></input>
-                        </span>
-                          </div>
-                          <div className='modal__dates_year'>
-                          <div>
-                             <div className ='label_year'>Год</div>
-                             <div className ='year'>
-                             <label>20</label>
-                             <input maxLength="2"  type='text' name='year' id='year' onChange={(e) => setYear(e.target.value)} ></input>
-                             </div>
-                          </div>
-                          </div>
-
-                    </div>
-                          <div> 
-                      </div>
+                    <Templates template = {template} />
                     </div>
                     <div className='modal__footer'>
-                    <Templates template = {template} />
+                    
                     <button type='submit'>Забронировать</button>
                     </div>
                     {error && <div className='modal__warning'>{error}</div>}
