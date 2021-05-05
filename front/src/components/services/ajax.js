@@ -37,6 +37,13 @@ export default class Ajax {
       return this.sendRequest('/unbusy' , 'PUT' , body)
     }
 
+    changeDate = async(date) =>{
+      const body = {
+        date : date
+      }
+      return this.sendRequest('/changeDate' , 'PUT', body);
+    }
+
     changeResource = async(date , activeUser) =>{
       const body ={
         date : date,

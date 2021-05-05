@@ -17,6 +17,13 @@ const unBusy = (room) =>{
    
 }
 
+const openModal = (room) => {
+  const getNumberRoom = room.split(' ')[1];
+  localStorage.setItem('current_room' , getNumberRoom );
+  dispatch(openWindow('fromRoom'));
+
+}
+
 const createRoom = (room) =>{  // формирование комнаты
  const arrRooms = [];
  const currentaFloor = localStorage.getItem('current_floor'); 
@@ -28,7 +35,7 @@ const createRoom = (room) =>{  // формирование комнаты
        <div>{elem.status}</div>
        <div>{elem.data}</div>
        {ActiveUser && <button onClick={()=>unBusy(elem.room)}>unbusy</button>}
-       {ActiveUser && <button onClick={()=>dispatch(openWindow('FromRoom'))}>test</button>}
+       {ActiveUser && <button onClick={()=>openModal(elem.room)}>test</button>}
        
      </li>)
      }

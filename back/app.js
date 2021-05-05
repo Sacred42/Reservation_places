@@ -39,6 +39,12 @@ app.options('/checkData' , (req,res)=>{
     
 })
 
+app.put('/changeDate', (req,res)=>{
+    dboperations.changeDate(req.body)
+    .then((data)=>res.send(data))
+    .catch((err)=> res.status(404).send({error : err.message}));
+})
+
 app.put('/unbusy' , (req,res)=>{
     dboperations.unBusyPlace(req.body)
     .then((data)=>res.send(data));

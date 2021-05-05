@@ -31,15 +31,17 @@ async function getResource() {
 async function unBusyPlace(room)
 {
     const{number} = room;
-    console.log(number);
     const query = `UPDATE Room SET ActiveUser = NULL, Data = NULL, Status = 'free' WHERE Name = '${number}' SELECT * FROM Room WHERE Name = '${number}' `;
     return requestToBase(query);
 }
 
-// async function getBusyPlaces(){
-//    const query = `SELECT * FROM Room WHERE Status = 'busy' `
-//    return requestToBase(query);
-// }
+async function changeDate ({date:{day , month, hour, minutes, year, room}}){
+ const formatedDates = validationDates.validationDates(day , month, hour, minutes, year);
+ console.log(room);
+ const [ dayD, monthD, hourD, minutesD, yearD] = formatedDates;
+ const query = `UPDATE Room SET Data = '20${yearD}-${monthD}-${dayD}T${hourD}:${minutesD}:00' WHERE Name = 'комната ${room}' SELECT * FROM Room WHERE Name = 'комната ${room}'`
+ return requestToBase(query);
+} 
 
 async function changeResource({date}){
     const {number} = date ;
@@ -60,7 +62,7 @@ module.exports = {
     updateResource : updateResource,
     getResourceToFloor : getResourceToFloor,
     getExpiredRooms : getExpiredRooms,
-
+    changeDate : changeDate,
     unBusyPlace : unBusyPlace
 }
 

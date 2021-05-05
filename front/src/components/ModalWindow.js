@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import Portal from './Portal';
-import Ajax from './services/ajax';
-import {changeStatusRoom} from './actions/RoomAction';
 import {setVisibleWindow , unSetVisibleWindow} from  './actions/SuccesWindowAction';
 import {openWindow , closeWindow} from './actions/ModalWindowActions';
 import TemplatesJSX from './services/templates/templatesJSX';
@@ -20,6 +18,7 @@ const Modal = () => {
    
     const clear = () =>{
         dispatch(closeWindow());
+        setError(null);
     }
 
     const success = () => {
@@ -51,6 +50,7 @@ const Modal = () => {
             }
             const activeUser = localStorage.getItem('user')
             const date = parseNodeList(document.querySelectorAll('input'));
+            console.log('my date-' ,date);
             request(date, activeUser)
             .then((room)=>dispatch(func(room)))
             .then(()=>success())
@@ -63,7 +63,6 @@ const Modal = () => {
                 <div className='modal'>
                     <div className='modal__window'>
                     <div className='modal__exit' onClick={clear}>X</div>
-                    <h3 className='modal__header'>Выберети свободную комнату</h3>
                     <div className='modal__body'>
                     <TemplatesJSX template = {template} />
                     </div>

@@ -1,10 +1,16 @@
 import React from 'react';
+const test = () =>{
+   const activeRoom = localStorage.getItem('current_room');
+   console.log(activeRoom,'from local')
+   return activeRoom;
+}
 const templates = (templ) => {
     const {template} = templ;
     switch(template){
         case 'changeResource' : 
         return (
             <div>
+                 <h3 className='modal__header'>Выберети свободную комнату</h3>
                  <div>
                           <div>Комната(номер)</div>
                           <input type='text' name='number' id='number' ></input>
@@ -48,9 +54,34 @@ const templates = (templ) => {
                       </div>
             </div>
         )
-        case 'FromRoom' : 
+        case 'fromRoom' : 
         return (
-            <div>я из комнаты</div>
+            <div className = 'modal__change_dates'>
+              <h3 className='modal__header'>Изменить дату</h3>
+            <div className = 'modal__change_dates_items'>
+              <span>
+                 <div>День</div>
+                 <input name='day' maxlength='2'></input>
+              </span>
+              <span>
+                 <div>Месяц</div>
+                 <input name='month' maxlength='2'></input>
+              </span>
+              <span>
+                 <div>Часы</div>
+                 <input name='hour' maxlength='2'></input>
+              </span>
+              <span>
+                 <div>Минуты</div>
+                 <input name='minutes' maxlength='2'></input>
+              </span>
+              <span className = 'modal__change_dates_items_year'>
+                 <div>Год</div>
+                 <input name='year' maxlength='2'></input>
+              </span>
+            </div>
+            <div><input name='room' value={test()}  type='text'/></div>
+            </div>
         )
         default :
          return (<div>ну туда!</div>)
