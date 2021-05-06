@@ -1,11 +1,14 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 const test = () =>{
    const activeRoom = localStorage.getItem('current_room');
-   console.log(activeRoom,'from local')
    return activeRoom;
 }
-const templates = (templ) => {
+const templates = (templ , Admin) => {
     const {template} = templ;
+    const state = useSelector(state=>state);
+    const {isAdmin} = state.isAdminReducer;
+    
     switch(template){
         case 'changeResource' : 
         return (
@@ -13,7 +16,7 @@ const templates = (templ) => {
                  <h3 className='modal__header'>Выберети свободную комнату</h3>
                  <div>
                           <div>Комната(номер)</div>
-                          <input type='text' name='number' id='number' ></input>
+                          <input className='modal__dates__for_change' type='text' name='number' id='number' ></input>
                       </div>
                     <div className="modal__dates">
                           <header>Дата</header>
@@ -21,22 +24,22 @@ const templates = (templ) => {
                         <div className='modal__dates_day_month'>
                             <span>
                               <div>День</div>
-                              <input maxLength="2"   type='text' name='day' id='day'  ></input>
+                              <input className='modal__dates__for_change' maxLength="2"   type='text' name='day' id='day'  ></input>
                              </span>
                              <span>
                               <div>Месяц</div>
-                              <input maxLength="2"  type='text' name='month' id='month' ></input>
+                              <input className='modal__dates__for_change' maxLength="2"  type='text' name='month' id='month' ></input>
                              </span>
                              
                          </div>
                          <div className='modal__dates_day_month'>
                            <span>
                              <div>Часы</div>
-                             <input maxLength="2"  type='text' name='hour' id='hour'  ></input>
+                             <input className='modal__dates__for_change' maxLength="2"  type='text' name='hour' id='hour'  ></input>
                           </span>
                           <span>
                              <div>Минуты</div>
-                             <input maLength="2"  type='text' name='minutes' id='minutes' ></input>
+                             <input className='modal__dates__for_change' maLength="2"  type='text' name='minutes' id='minutes' ></input>
                         </span>
                           </div>
                           <div className='modal__dates_year'>
@@ -44,7 +47,7 @@ const templates = (templ) => {
                              <div className ='label_year'>Год</div>
                              <div className ='year'>
                              <label>20</label>
-                             <input maxLength="2"  type='text' name='year' id='year'  ></input>
+                             <input className='modal__dates__for_change' maxLength="2"  type='text' name='year' id='year'  ></input>
                              </div>
                           </div>
                           </div>
@@ -61,28 +64,39 @@ const templates = (templ) => {
             <div className = 'modal__change_dates_items'>
               <span>
                  <div>День</div>
-                 <input name='day' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='day' maxlength='2'></input>
               </span>
               <span>
                  <div>Месяц</div>
-                 <input name='month' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='month' maxlength='2'></input>
               </span>
               <span>
                  <div>Часы</div>
-                 <input name='hour' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='hour' maxlength='2'></input>
               </span>
               <span>
                  <div>Минуты</div>
-                 <input name='minutes' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='minutes' maxlength='2'></input>
               </span>
               <span className = 'modal__change_dates_items_year'>
                  <div>Год</div>
-                 <input name='year' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='year' maxlength='2'></input>
               </span>
             </div>
-            <div><input name='room' value={test()}  type='text'/></div>
+            <div className = 'modal__change_dates_items_room' ><input className='modal__dates__for_change'  name='room' value={test()}  type='text'/></div>
             </div>
         )
+        case 'changeUser' :
+           return(
+              <div>
+                 <h3 className='modal__header'>Изменить дату</h3>
+                 <div>
+                    <label>Пользователь</label>
+                    <input className='modal__dates__for_change' name='user'></input>
+                 </div>
+                 <div className = 'modal__change_dates_items_room' ><input className='modal__dates__for_change'  name='room' value={test()}  type='text'/></div>
+              </div>
+           )
         default :
          return (<div>ну туда!</div>)
     } 

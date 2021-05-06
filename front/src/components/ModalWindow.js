@@ -8,11 +8,14 @@ import TemplatesFn from './services/templates/templatesFunctions';
 
 const Modal = () => {
     const [error, setError] = useState(null);
-    const state = useSelector(state =>state.ModalWindow)
-    const {visible , template} = state;
+    const [activeUser, setActiveUser] = useState(null)
+    const state = useSelector(state=>state)
+    const {visible , template} = state.ModalWindow;
+    const {isAdmin} = state.isAdminReducer;
     const functions = TemplatesFn(template);
     const {request, func} = functions;
     const dispatch = useDispatch();
+    const user = isAdmin ? activeUser : localStorage.getItem('user') ;
 
     
    
@@ -32,7 +35,7 @@ const Modal = () => {
     }
 
     const checkWriteIn = () =>{
-        const fields = document.querySelectorAll('input');
+        const fields = document.querySelectorAll('.modal__dates__for_change');
         const res = Array.prototype.some.call(fields, (elem)=>elem.value.length === 0);
         return res;
     }
@@ -48,10 +51,8 @@ const Modal = () => {
             if(checkWriteIn()){
                 return setError('write in all fields!');
             }
-            const activeUser = localStorage.getItem('user')
-            const date = parseNodeList(document.querySelectorAll('input'));
-            console.log('my date-' ,date);
-            request(date, activeUser)
+            const date = parseNodeList(document.querySelectorAll('.modal__dates__for_change'));
+            request(date, user)
             .then((room)=>dispatch(func(room)))
             .then(()=>success())
             .catch(({error})=>setError(error));        
@@ -64,11 +65,12 @@ const Modal = () => {
                     <div className='modal__window'>
                     <div className='modal__exit' onClick={clear}>X</div>
                     <div className='modal__body'>
-                    <TemplatesJSX template = {template} />
+                    <TemplatesJSX template = {template}/>
                     </div>
                     <div className='modal__footer'>
                     
                     <button type='submit'>Забронировать</button>
+                    {(isAdmin && template === 'changeResource') && <input type='text' className='admin_user modal__dates__for_change' onChange={(e)=>setActiveUser(e.target.value)}></input>}
                     </div>
                     {error && <div className='modal__warning'>{error}</div>}
                     </div>

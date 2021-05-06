@@ -44,6 +44,21 @@ export default class Ajax {
       return this.sendRequest('/changeDate' , 'PUT', body);
     }
 
+    changeUser = async(date) =>{
+      const body = {
+        date : date
+      }
+      return this.sendRequest('/changeUser' , 'PUT', body);
+    }
+
+    auth = async(name , password) =>{
+     const body = {
+        name : name,
+        password : password
+      }
+      return this.sendRequest('/auth' , 'POST', body);
+    }
+
     changeResource = async(date , activeUser) =>{
       const body ={
         date : date,

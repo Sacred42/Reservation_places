@@ -35,7 +35,8 @@ app.get('/:id' , (req , res)=>{
 app.options('/checkData' , (req,res)=>{
     console.log(new Date());
     dboperations.getExpiredRooms()
-    .then(result=>res.send(JSON.stringify('success')));
+    .then(result=>res.send(JSON.stringify('success')))
+    .catch((err)=> res.status(404).send({error : err.message}));
     
 })
 
@@ -47,7 +48,14 @@ app.put('/changeDate', (req,res)=>{
 
 app.put('/unbusy' , (req,res)=>{
     dboperations.unBusyPlace(req.body)
-    .then((data)=>res.send(data));
+    .then((data)=>res.send(data))
+    .catch((err)=> res.status(404).send({error : err.message}));
+})
+
+app.put('/changeUser', (req,res)=>{
+    dboperations.changeUser(req.body)
+    .then((data)=>res.send(data))
+    .catch((err)=> res.status(404).send({error : err.message}));
 })
 
 app.put('/update', (req, res )=>{
@@ -58,6 +66,14 @@ app.put('/update', (req, res )=>{
  .then((data)=> dboperations.updateResource(data , date , activeUser))
  .then((data)=>res.send(data))
  .catch((err)=> res.status(404).send({error : err.message}));
+})
+
+app.post('/auth' , (req,res)=>{
+    const {name , password} = req.body;
+    if(name === 'admin' && password === 'admin'){
+        res.send(JSON.stringify('succes'))
+    }
+    res.status(400).send(JSON.stringify('wrong password/name'));
 })
 
 

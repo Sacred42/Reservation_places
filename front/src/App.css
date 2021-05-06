@@ -6,7 +6,7 @@ html{
 }
 
 .container {
-    width: 950px;
+    width: 1000px;
     margin: 0 auto;
 }
 
@@ -19,7 +19,7 @@ html{
     width: 100%;
     height: 100%;
     background-color: #E6E5EB;
-    height: 80px;
+    height: 90px;
     border: 1px solid #666f;
     box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
     display: flex;
@@ -43,12 +43,17 @@ html{
 .place{
 
     list-style: none;
-    min-width: 180px;
-    min-height: 180px;
+    min-width: 200px;
+    min-height: 230px;
     padding: 40px 0px;
     margin:0px 30px 20px 0px ;
     border: 1px solid #000;
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.empty__room{
+    list-style: none;
+    padding-top: 60px;
 }
 
 .place__free{
@@ -63,6 +68,8 @@ background-color: #37E82C;
     position: relative;
     margin-bottom: 50px;
 }
+
+
 
 .floor{
 position: absolute;
@@ -183,6 +190,10 @@ left: 0;
       bottom:25%;
   }
 
+  .modal__change_dates_items_room{
+    visibility: hidden;
+  }
+
 
 
   /* setVisibleWindow */
@@ -193,4 +204,37 @@ left: 0;
       right: 100px;
       color: green;
       font-size: 25px;
+  }
+
+  /* admin */
+  .admin__head{
+      position : relative;
+  }
+
+  .admin__no_auth input{
+   padding : 5px 5px 5px 20px;
+   width: 150px
+  }
+
+  .admin__no_auth div{
+      display: flex;
+      justify-content: space-between
+  }
+
+  .admin__no_auth label{
+    padding-right: 5px;
+}
+
+  .admin__no_auth{
+    margin: 5px;
+  }
+
+  .admin__no_auth_btn{
+      margin-left: 50%;
+  }
+
+  .admin__no_auth_error{
+      color: red;
+      position: absolute;
+      left: -25%;
   }

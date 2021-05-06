@@ -1,7 +1,7 @@
 import React from 'react';
 import Ajax from './services/ajax';
 import {unBusyPlace} from './actions/RoomAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {openWindow} from './actions/ModalWindowActions'
 
 
@@ -9,6 +9,9 @@ const ViewRoom = (props) => {
 const {rooms} = props;
 const ajax = new Ajax();
 const dispatch = useDispatch();
+const state = useSelector(state=>state.isAdminReducer);
+const {isAdmin} = state;
+
 const unBusy = (room) =>{
    
    ajax.unBusyPlace(room)
@@ -17,11 +20,19 @@ const unBusy = (room) =>{
    
 }
 
-const openModal = (room) => {
+const openModal = (room , templ) => {
   const getNumberRoom = room.split(' ')[1];
   localStorage.setItem('current_room' , getNumberRoom );
-  dispatch(openWindow('fromRoom'));
+  dispatch(openWindow(templ));
 
+}
+
+const addRoom = () =>{
+  return(
+  <li className='empty__room'>
+    <div><button>Добавить комнату</button></div>
+ </li>
+  )
 }
 
 const createRoom = (room) =>{  // формирование комнаты
@@ -33,13 +44,16 @@ const createRoom = (room) =>{  // формирование комнаты
       arrRooms.push(<li className={`place place__${elem.status}`} key={elem.room}>
        <div>{elem.room}</div>
        <div>{elem.status}</div>
-       <div>{elem.data}</div>
-       {ActiveUser && <button onClick={()=>unBusy(elem.room)}>unbusy</button>}
-       {ActiveUser && <button onClick={()=>openModal(elem.room)}>test</button>}
-       
+       {(ActiveUser || isAdmin) ? <div><a onClick={()=>openModal(elem.room, 'fromRoom')}>{elem.data}</a></div> : <div>{elem.data}</div>}
+       {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>unBusy(elem.room)}>unbusy</button></div>}
+       {/* {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>openModal(elem.room , 'fromRoom' )}>change</button></div>} */}
+       {(ActiveUser || isAdmin) && elem.status === 'free' && <div><button onClick={()=>openModal(elem.room , 'changeResource')}>busy</button></div>}
+       {isAdmin && <div><button>delete</button></div>}
+       {isAdmin && <div><a onClick={()=>openModal(elem.room, 'changeUser')}>{elem.user}</a></div>}
      </li>)
      }
  })
+ {isAdmin && arrRooms.push(addRoom())};
  return arrRooms;
 }
 const arrRooms = createRoom(rooms);

@@ -2,7 +2,6 @@ import Ajax from '../ajax';
 import {changeStatusRoom} from '../../actions/RoomAction';
 
 const templateFunction = (templ) =>{
-    console.log(templ,'that is templ!')
     const ajax = new Ajax();
     switch(templ){
         case 'changeResource' :
@@ -14,6 +13,11 @@ const templateFunction = (templ) =>{
           return {
               request : ajax.changeDate,
               func : changeStatusRoom
+          }
+        case 'changeUser' :
+          return{
+            request : ajax.changeUser,
+            func : changeStatusRoom
           }
         default :
           return {
