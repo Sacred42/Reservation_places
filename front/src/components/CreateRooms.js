@@ -21,6 +21,9 @@ const unBusy = (room) =>{
 }
 
 const openModal = (room , templ) => {
+  if(room === null){
+    return dispatch(openWindow(templ));
+  }
   const getNumberRoom = room.split(' ')[1];
   localStorage.setItem('current_room' , getNumberRoom );
   dispatch(openWindow(templ));
@@ -30,7 +33,7 @@ const openModal = (room , templ) => {
 const addRoom = () =>{
   return(
   <li className='empty__room'>
-    <div><button>Добавить комнату</button></div>
+    <div><button onClick={()=>openModal( null ,'createRoom')}>Добавить комнату</button></div>
  </li>
   )
 }
