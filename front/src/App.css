@@ -44,11 +44,19 @@ html{
 
     list-style: none;
     min-width: 200px;
-    min-height: 230px;
+    min-height: 240px;
     padding: 40px 0px;
     margin:0px 30px 20px 0px ;
     border: 1px solid #000;
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+
+.place *{
+padding-bottom:5px;
+}
+
+.place button{
+    min-width: 80px
 }
 
 .empty__room{
@@ -90,6 +98,13 @@ left: 0;
     justify-content: center;
   }
 
+  .modal__btn_ok{
+      position: absolute;
+      bottom: 50px;
+      right: 250px
+
+  }
+
   .modal__window{
       position: relative;
       background-color: #E6E5EB;
@@ -105,7 +120,7 @@ left: 0;
 
   .modal__header{
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
   }
 
   .modal__footer{
@@ -135,10 +150,6 @@ left: 0;
   .modal__body label {
       margin-right: 40px ;
   }
-  
-  .modal__dates{
-      margin-top: 10px;
-  }
 
   .modal__dates input{
     width: 25px;
@@ -157,6 +168,10 @@ left: 0;
   }
   .label_year{
     margin-left : 35px;
+  }
+
+  .user_label{
+      padding-right: 70px;
   }
 
   .year label {

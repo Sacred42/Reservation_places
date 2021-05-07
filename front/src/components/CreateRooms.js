@@ -47,10 +47,10 @@ const createRoom = (room) =>{  // формирование комнаты
       arrRooms.push(<li className={`place place__${elem.status}`} key={elem.room}>
        <div>{elem.room}</div>
        <div>{elem.status}</div>
-       {(ActiveUser || isAdmin) ? <div><a onClick={()=>openModal(elem.room, 'fromRoom')}>{elem.data}</a></div> : <div>{elem.data}</div>}
+       {(ActiveUser || isAdmin) ? <div><a onClick={()=>openModal(elem.room, 'createDate')}>{elem.data}</a></div> : <div>{elem.data}</div>}
        {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>unBusy(elem.room)}>unbusy</button></div>}
        {/* {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>openModal(elem.room , 'fromRoom' )}>change</button></div>} */}
-       {(ActiveUser || isAdmin) && elem.status === 'free' && <div><button onClick={()=>openModal(elem.room , 'changeResource')}>busy</button></div>}
+       {(ActiveUser || isAdmin) && elem.status === 'free' && <div><button onClick={()=>openModal(elem.room , 'busyPlaceA')}>busy</button></div>}
        {isAdmin && <div><button>delete</button></div>}
        {isAdmin && <div><a onClick={()=>openModal(elem.room, 'changeUser')}>{elem.user}</a></div>}
      </li>)

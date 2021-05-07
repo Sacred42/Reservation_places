@@ -15,7 +15,7 @@ const Modal = () => {
     const functions = TemplatesFn(template);
     const {request, func} = functions;
     const dispatch = useDispatch();
-    const user = isAdmin ? activeUser : localStorage.getItem('user') ;
+    let user = isAdmin ? activeUser : localStorage.getItem('user') ;
 
     
    
@@ -30,7 +30,7 @@ const Modal = () => {
     }
 
     const openModal = () =>{
-        dispatch(openWindow('changeResource'));
+        dispatch(openWindow('busyPlaceNA'));
         dispatch(unSetVisibleWindow());
     }
 
@@ -46,11 +46,19 @@ const Modal = () => {
         return date;  
     }
 
+    const getUser = () =>{
+        const userFromDOM = document.querySelector('.admin_user');
+         user = userFromDOM.value;
+         return;
+    }
+        
+
    const loadingData = (e) =>{
             e.preventDefault();
             if(checkWriteIn()){
                 return setError('write in all fields!');
             }
+            if(isAdmin && (template === 'busyPlaceA' || template==='createRoom')){getUser()};
             const date = parseNodeList(document.querySelectorAll('.modal__dates__for_change'));
             request(date, user)
             .then((room)=>dispatch(func(room)))
@@ -69,8 +77,7 @@ const Modal = () => {
                     </div>
                     <div className='modal__footer'>
                     
-                    <button type='submit'>Забронировать</button>
-                    {(isAdmin && template === 'changeResource') && <input type='text' className='admin_user modal__dates__for_change' onChange={(e)=>setActiveUser(e.target.value)}></input>}
+                    <button className='modal__btn_ok' type='submit'>Подтвердить</button>
                     </div>
                     {error && <div className='modal__warning'>{error}</div>}
                     </div>

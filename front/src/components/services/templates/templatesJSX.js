@@ -24,7 +24,7 @@ const Templates = (templ , Admin) => {
      
     
     switch(template){
-        case 'changeResource' : 
+        case 'busyPlaceNA' : 
         return (
             <div>
                  <h3 className='modal__header'>Выберети свободную комнату</h3>
@@ -70,8 +70,58 @@ const Templates = (templ , Admin) => {
                           <div> 
                       </div>
             </div>
-        )
-        case 'fromRoom' : 
+        );
+
+        case 'busyPlaceA' :
+           return(
+            <div>
+            <h3 className='modal__header'>Выберети свободную комнату</h3>
+               <div className="modal__dates">
+                     <header>Дата</header>
+
+                   <div className='modal__dates_day_month'>
+                       <span>
+                         <div>День</div>
+                         <input className='modal__dates__for_change' maxLength="2"   type='text' name='day' id='day'  ></input>
+                        </span>
+                        <span>
+                         <div>Месяц</div>
+                         <input className='modal__dates__for_change' maxLength="2"  type='text' name='month' id='month' ></input>
+                        </span>
+                        
+                    </div>
+                    <div className='modal__dates_day_month'>
+                      <span>
+                        <div>Часы</div>
+                        <input className='modal__dates__for_change' maxLength="2"  type='text' name='hour' id='hour'  ></input>
+                     </span>
+                     <span>
+                        <div>Минуты</div>
+                        <input className='modal__dates__for_change' maLength="2"  type='text' name='minutes' id='minutes' ></input>
+                   </span>
+                     </div>
+                     <div className='modal__dates_year'>
+                     <div>
+                        <div className ='label_year'>Год</div>
+                        <div className ='year'>
+                        <label>20</label>
+                        <input className='modal__dates__for_change' maxLength="2"  type='text' name='year' id='year'  ></input>
+                        </div>
+                     </div>
+                     </div>
+                     <div className = 'modal__change_dates_items_room' ><input className='modal__dates__for_change'  name='number' value={test()}  type='text'/></div>
+               </div>
+                     <div> 
+                 </div>
+                 <div>
+                    <label className='user_label'>Пользователь</label>
+                    <input type='text' className='admin_user modal__dates__for_change'></input>
+                 </div>
+                
+       </div>
+           )
+
+        case 'createDate' : 
         return (
             <div className = 'modal__change_dates'>
               <h3 className='modal__header'>Изменить дату</h3>
@@ -105,7 +155,7 @@ const Templates = (templ , Admin) => {
               <div>
                  <h3 className='modal__header'>Изменить дату</h3>
                  <div>
-                    <label>Пользователь</label>
+                    <label className='user_label'>Пользователь</label>
                     <input className='modal__dates__for_change' name='user'></input>
                  </div>
                  <div className = 'modal__change_dates_items_room' ><input className='modal__dates__for_change'  name='room' value={test()}  type='text'/></div>
@@ -128,6 +178,7 @@ const Templates = (templ , Admin) => {
                    </select>
                 </div>
                 {(status === 'busy' && 
+                <div>
                        <div className="modal__dates">
                        <header>Дата</header>
 
@@ -161,7 +212,11 @@ const Templates = (templ , Admin) => {
                           </div>
                        </div>
                        </div>
+                      
                  </div>
+                 <label className='user_label'>Пользователь</label>
+                  <input type='text' className='admin_user modal__dates__for_change'></input>
+                  </div>
                
                 )}
             </div>

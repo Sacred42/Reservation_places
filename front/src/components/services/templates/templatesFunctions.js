@@ -4,12 +4,12 @@ import {changeStatusRoom} from '../../actions/RoomAction';
 const templateFunction = (templ) =>{
     const ajax = new Ajax();
     switch(templ){
-        case 'changeResource' :
+        case 'busyPlaceNA' :
           return {
             request : ajax.changeResource,
             func : changeStatusRoom
           }
-        case 'fromRoom' : 
+        case 'createDate' : 
           return {
               request : ajax.changeDate,
               func : changeStatusRoom
