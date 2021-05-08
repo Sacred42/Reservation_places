@@ -10,7 +10,7 @@ ajax = new Ajax();
 componentDidMount(){
  localStorage.setItem('current_floor' , 1);
  this.props.getRoomsInitial();
- this.interval = setInterval(this.checkRoomS , 10000);
+ this.interval = setInterval(this.checkRoomS , 360000);
 }
 
 checkRoomS = () =>{

@@ -48,6 +48,7 @@ const Modal = () => {
 
     const getUser = () =>{
         const userFromDOM = document.querySelector('.admin_user');
+        if(!userFromDOM){return};
          user = userFromDOM.value;
          return;
     }

@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname , 'static')));
 
 app.get('/' , (req,res)=>{
-    console.log('i was here');
-    dboperations.getResource()
+    dboperations.getExpiredRooms()
+    .then(()=>dboperations.getResource())
     .then(result => {
         res.send(result);
      })
@@ -35,7 +35,7 @@ app.get('/:id' , (req , res)=>{
 app.options('/checkData' , (req,res)=>{
     console.log(new Date());
     dboperations.getExpiredRooms()
-    .then(result=>res.send(JSON.stringify('success')))
+    .then(()=>res.send(JSON.stringify('success')))
     .catch((err)=> res.status(404).send({error : err.message}));
     
 })
@@ -74,6 +74,12 @@ app.post('/auth' , (req,res)=>{
         res.send(JSON.stringify('succes'))
     }
     res.status(400).send(JSON.stringify('wrong password/name'));
+})
+
+app.post('/createRoom', (req,res)=>{
+    dboperations.createRoom(req.body)
+    .then(data=>console.log(data))
+
 })
 
 

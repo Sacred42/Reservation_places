@@ -37,16 +37,16 @@ const transformResource = (resource) =>{
   }
 
   const defineFloors = (props) =>{ // определение кол-ва этажей
-    const getFloor = [];
-    let nonRepeat = [];
+    let qtyFloor ;
+    const numbersFloors = [];
     props.forEach(({floor})=>{
-      if(nonRepeat.includes(floor)){
-        return;
-      } 
-      nonRepeat.push(floor);
-      getFloor.push(floor);
+     const number = floor.split(' ')[0];
+     numbersFloors.push(parseInt(number));
     })
-    return getFloor.length ;
+    qtyFloor = numbersFloors.reduce((a,b)=>{
+     return a > b ?  a : b;
+    })
+    return qtyFloor ;
   }
 
 

@@ -55,9 +55,16 @@ async function changeResource({date}){
 
 async function updateResource(value, {day , month, hour, minutes, year} , activeUser){
     const formatedDates = validationDates.validationDates(day , month, hour, minutes, year);
-    console.log(formatedDates);
     const [ dayD, monthD, hourD, minutesD, yearD] = formatedDates;
     const query = `UPDATE Room SET ActiveUser = '${activeUser}', Status = 'busy', Data = '20${yearD}-${monthD}-${dayD}T${hourD}:${minutesD}:00' WHERE Name = '${value[0][0].Name}' SELECT * FROM Room WHERE Name = '${value[0][0].Name}'`;
+    return requestToBase(query);
+}
+
+async function createRoom({date : {number , status, floor,  day, month, hour, minutes, year} , activeUser=NULL}){
+    console.log(number , status, floor,  day, month, hour, minutes, year, activeUser);
+    const dataStatus = status === 'free' ? 'NULL' : `'20${year}-${month}-${day}T${hour}:${minutes}:00'`
+    console.log(dataStatus, 'это дата!')
+    const query = `INSERT INTO Room (Name , Status , floorId , Data , ActiveUser) VALUES ( 'комната ${number}', '${status}', '${floor}',  ${dataStatus}, ${activeUser})`
     return requestToBase(query);
 }
 module.exports = {
@@ -68,6 +75,8 @@ module.exports = {
     getExpiredRooms : getExpiredRooms,
     changeDate : changeDate,
     changeUser : changeUser,
-    unBusyPlace : unBusyPlace
+    unBusyPlace : unBusyPlace,
+
+    createRoom : createRoom
 }
 

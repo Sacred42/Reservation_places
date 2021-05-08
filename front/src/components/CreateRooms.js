@@ -51,7 +51,7 @@ const createRoom = (room) =>{  // формирование комнаты
        {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>unBusy(elem.room)}>unbusy</button></div>}
        {/* {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>openModal(elem.room , 'fromRoom' )}>change</button></div>} */}
        {(ActiveUser || isAdmin) && elem.status === 'free' && <div><button onClick={()=>openModal(elem.room , 'busyPlaceA')}>busy</button></div>}
-       {isAdmin && <div><button>delete</button></div>}
+       {isAdmin && <div><button>delete</button></div>} 
        {isAdmin && <div><a onClick={()=>openModal(elem.room, 'changeUser')}>{elem.user}</a></div>}
      </li>)
      }

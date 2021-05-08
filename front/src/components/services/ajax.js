@@ -59,6 +59,14 @@ export default class Ajax {
       return this.sendRequest('/auth' , 'POST', body);
     }
 
+    createRoom = (date, activeUser) =>{
+      const body = {
+        date : date, 
+        activeUser : activeUser
+      }
+      return this.sendRequest('/createRoom', 'POST', body);
+    }
+
     changeResource = async(date , activeUser) =>{
       const body ={
         date : date,

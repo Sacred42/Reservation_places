@@ -9,6 +9,11 @@ const templateFunction = (templ) =>{
             request : ajax.changeResource,
             func : changeStatusRoom
           }
+          case 'createRoom' :
+            return {
+              request : ajax.createRoom,
+              func : changeStatusRoom
+            }
         case 'createDate' : 
           return {
               request : ajax.changeDate,

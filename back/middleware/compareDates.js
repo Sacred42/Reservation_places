@@ -10,6 +10,7 @@ function compareDate(arr){
     return expiredRooms;
 }
 
+
 function getNowData(){
     const nowDate = new Date().toISOString();
     const getMS = Date.parse(nowDate);
@@ -62,5 +63,5 @@ function createFormatPlusZero(arr){
 
 module.exports = {
     compareDate : compareDate,
-        validationDates : validationDates
+    validationDates : validationDates
 }
