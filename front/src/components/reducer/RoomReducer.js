@@ -8,6 +8,13 @@ const changeStatus = ({rooms}, value) =>{
          ...rooms.slice(index + 1)
      ]
 }
+
+const createRoom = ({rooms}, value) =>{
+return[
+    ...rooms, 
+    value
+]
+}
 const RoomReducer = (state = {rooms : []} , action) =>{
     switch(action.type){
       case 'LOADING_ROOMS':
@@ -42,6 +49,10 @@ const RoomReducer = (state = {rooms : []} , action) =>{
              return {
                  rooms : changeStatus(state, action.payload)
              }
+        case 'CREATE_ROOM' :
+            return{
+                rooms : createRoom(state, action.payload)
+            }
         default :
         return state
     }

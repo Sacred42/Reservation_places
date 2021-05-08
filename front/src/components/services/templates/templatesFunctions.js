@@ -1,5 +1,5 @@
 import Ajax from '../ajax';
-import {changeStatusRoom} from '../../actions/RoomAction';
+import {changeStatusRoom , createRoom} from '../../actions/RoomAction';
 
 const templateFunction = (templ) =>{
     const ajax = new Ajax();
@@ -12,7 +12,7 @@ const templateFunction = (templ) =>{
           case 'createRoom' :
             return {
               request : ajax.createRoom,
-              func : changeStatusRoom
+              func : createRoom
             }
         case 'createDate' : 
           return {

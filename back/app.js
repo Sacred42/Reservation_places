@@ -78,7 +78,9 @@ app.post('/auth' , (req,res)=>{
 
 app.post('/createRoom', (req,res)=>{
     dboperations.createRoom(req.body)
-    .then(data=>console.log(data))
+    .then(data=>res.send(data))
+ .catch((err)=> res.status(404).send({error : err.message}));
+
 
 })
 

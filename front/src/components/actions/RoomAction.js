@@ -34,4 +34,8 @@ const unBusyPlace = (room) => async(dispatch) =>{
   dispatch({type : 'UNBUSY_ROOM' , payload :  trahsformRoom(room)});
 }
 
-export {getRoomsInitial ,  getRoomsUseFloor , changeStatusRoom, getFloors , unBusyPlace};
+const createRoom = (room) => async(dispatch) =>{
+  dispatch({type: 'CREATE_ROOM', payload : trahsformRoom(room)})
+}
+
+export {getRoomsInitial ,  getRoomsUseFloor , changeStatusRoom, getFloors , unBusyPlace, createRoom};

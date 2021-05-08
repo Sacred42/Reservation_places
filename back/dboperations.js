@@ -61,10 +61,11 @@ async function updateResource(value, {day , month, hour, minutes, year} , active
 }
 
 async function createRoom({date : {number , status, floor,  day, month, hour, minutes, year} , activeUser=NULL}){
-    console.log(number , status, floor,  day, month, hour, minutes, year, activeUser);
-    const dataStatus = status === 'free' ? 'NULL' : `'20${year}-${month}-${day}T${hour}:${minutes}:00'`
-    console.log(dataStatus, 'это дата!')
-    const query = `INSERT INTO Room (Name , Status , floorId , Data , ActiveUser) VALUES ( 'комната ${number}', '${status}', '${floor}',  ${dataStatus}, ${activeUser})`
+    const user = activeUser ? `'${activeUser}'` : activeUser;
+    const formatedDates = status === 'busy' ? validationDates.validationDates(day , month, hour, minutes, year) : [day , month, hour, minutes, year];
+    const [ dayD, monthD, hourD, minutesD, yearD] = formatedDates;
+    const dataStatus = status === 'free' ? 'NULL' : `'20${yearD}-${monthD}-${dayD}T${hourD}:${minutesD}:00'`;
+    const query = `INSERT INTO Room (Name , Status , floorId , Data , ActiveUser) VALUES ( 'комната ${number}', '${status}', '${floor}',  ${dataStatus}, ${user}) SELECT * FROM Room WHERE Name = 'комната ${number}'`
     return requestToBase(query);
 }
 module.exports = {
