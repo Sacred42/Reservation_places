@@ -1,8 +1,8 @@
 import React from 'react';
 import Ajax from './services/ajax';
-import {unBusyPlace} from './actions/RoomAction';
+import {unBusyPlace, deleteRoom} from './actions/RoomAction';
 import { useDispatch, useSelector } from 'react-redux';
-import {openWindow} from './actions/ModalWindowActions'
+import {openWindow } from './actions/ModalWindowActions'
 
 
 const ViewRoom = (props) => {
@@ -18,6 +18,13 @@ const unBusy = (room) =>{
    .then((data)=>dispatch(unBusyPlace(data)))
    .catch(err=>err);
    
+}
+
+const deleted = (room) =>{
+  const number = room.split(' ')[1];
+  ajax.deleteRoom(number)
+  .then(data=>dispatch(deleteRoom(data)))
+  .catch(err=>err);
 }
 
 const openModal = (room , templ) => {
@@ -51,7 +58,7 @@ const createRoom = (room) =>{  // формирование комнаты
        {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>unBusy(elem.room)}>unbusy</button></div>}
        {/* {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>openModal(elem.room , 'fromRoom' )}>change</button></div>} */}
        {(ActiveUser || isAdmin) && elem.status === 'free' && <div><button onClick={()=>openModal(elem.room , 'busyPlaceA')}>busy</button></div>}
-       {isAdmin && <div><button>delete</button></div>} 
+       {isAdmin && <div><button onClick={()=>deleted(elem.room)}>delete</button></div>} 
        {isAdmin && <div><a onClick={()=>openModal(elem.room, 'changeUser')}>{elem.user}</a></div>}
      </li>)
      }

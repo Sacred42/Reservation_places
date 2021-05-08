@@ -80,8 +80,12 @@ app.post('/createRoom', (req,res)=>{
     dboperations.createRoom(req.body)
     .then(data=>res.send(data))
  .catch((err)=> res.status(404).send({error : err.message}));
+})
 
-
+app.delete('/deleteRoom', (req,res)=>{
+    dboperations.deleteRoom(req.body)
+    .then(data=>res.send(JSON.stringify(data)))
+    .catch((err)=> res.status(404).send({error : err.message}));
 })
 
 

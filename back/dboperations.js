@@ -68,6 +68,13 @@ async function createRoom({date : {number , status, floor,  day, month, hour, mi
     const query = `INSERT INTO Room (Name , Status , floorId , Data , ActiveUser) VALUES ( 'комната ${number}', '${status}', '${floor}',  ${dataStatus}, ${user}) SELECT * FROM Room WHERE Name = 'комната ${number}'`
     return requestToBase(query);
 }
+
+async function deleteRoom ({number}){
+    console.log(number)
+    const query = `DELETE FROM Room WHERE Name = 'комната ${number}'`
+    requestToBase(query);
+    return number;
+}
 module.exports = {
     getResource: getResource,
     changeResource : changeResource,
@@ -78,6 +85,7 @@ module.exports = {
     changeUser : changeUser,
     unBusyPlace : unBusyPlace,
 
+    deleteRoom : deleteRoom,
     createRoom : createRoom
 }
 

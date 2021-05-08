@@ -67,6 +67,13 @@ export default class Ajax {
       return this.sendRequest('/createRoom', 'POST', body);
     }
 
+    deleteRoom = (number) =>{
+      const body = {
+        number : number
+      }
+      return this.sendRequest('/deleteRoom', 'DELETE', body);
+    }
+
     changeResource = async(date , activeUser) =>{
       const body ={
         date : date,

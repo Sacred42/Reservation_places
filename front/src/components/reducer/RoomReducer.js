@@ -15,6 +15,16 @@ return[
     value
 ]
 }
+
+const deleteRoom = ({rooms}, value) =>{
+    console.log('was here!');
+    const removeRoom = rooms.findIndex((elem)=> elem.room === `комната ${value}`);
+    console.log(removeRoom);
+    return[
+        ...rooms.slice(0 , removeRoom),
+        ...rooms.slice(removeRoom + 1)
+    ]
+}
 const RoomReducer = (state = {rooms : []} , action) =>{
     switch(action.type){
       case 'LOADING_ROOMS':
@@ -52,6 +62,10 @@ const RoomReducer = (state = {rooms : []} , action) =>{
         case 'CREATE_ROOM' :
             return{
                 rooms : createRoom(state, action.payload)
+            }
+        case 'DELETE_ROOM' :
+            return{
+                rooms : deleteRoom(state, action.payload)
             }
         default :
         return state
