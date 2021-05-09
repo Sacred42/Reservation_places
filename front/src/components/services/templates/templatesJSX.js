@@ -53,7 +53,7 @@ const Templates = (templ , Admin) => {
                           </span>
                           <span>
                              <div>Минуты</div>
-                             <input className='modal__dates__for_change' maLength="2"  type='text' name='minutes' id='minutes' ></input>
+                             <input className='modal__dates__for_change' maxLength="2"  type='text' name='minutes' id='minutes' ></input>
                         </span>
                           </div>
                           <div className='modal__dates_year'>
@@ -97,7 +97,7 @@ const Templates = (templ , Admin) => {
                      </span>
                      <span>
                         <div>Минуты</div>
-                        <input className='modal__dates__for_change' maLength="2"  type='text' name='minutes' id='minutes' ></input>
+                        <input className='modal__dates__for_change' maxLength="2"  type='text' name='minutes' id='minutes' ></input>
                    </span>
                      </div>
                      <div className='modal__dates_year'>
@@ -128,26 +128,26 @@ const Templates = (templ , Admin) => {
             <div className = 'modal__change_dates_items'>
               <span>
                  <div>День</div>
-                 <input className='modal__dates__for_change' name='day' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='day' maxLength='2'></input>
               </span>
               <span>
                  <div>Месяц</div>
-                 <input className='modal__dates__for_change' name='month' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='month' maxLength='2'></input>
               </span>
               <span>
                  <div>Часы</div>
-                 <input className='modal__dates__for_change' name='hour' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='hour' maxLength='2'></input>
               </span>
               <span>
                  <div>Минуты</div>
-                 <input className='modal__dates__for_change' name='minutes' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='minutes' maxLength='2'></input>
               </span>
               <span className = 'modal__change_dates_items_year'>
                  <div>Год</div>
-                 <input className='modal__dates__for_change' name='year' maxlength='2'></input>
+                 <input className='modal__dates__for_change' name='year' maxLength='2'></input>
               </span>
             </div>
-            <div className = 'modal__change_dates_item' ><input className='modal__dates__for_change'  name='room' value={test()}  type='text'/></div>
+            <div className = 'modal__change_dates_item' ><input className='modal__dates__for_change' readOnly name='room' value={test()}  type='text'/></div>
             </div>
         )
         case 'changeUser' :

@@ -39,7 +39,7 @@ const openModal = (room , templ) => {
 
 const addRoom = () =>{
   return(
-  <li className='empty__room'>
+  <li className='empty__room' key={'btn_add_room'}>
     <div><button onClick={()=>openModal( null ,'createRoom')}>Добавить комнату</button></div>
  </li>
   )

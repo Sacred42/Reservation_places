@@ -253,3 +253,9 @@ left: 0;
       position: absolute;
       left: -25%;
   }
+
+  .admin__no_auth_logout{
+        opacity: 0.65; 
+        cursor: default;
+        pointer-events: none;
+  }
