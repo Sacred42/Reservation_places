@@ -89,7 +89,7 @@ const Modal = () => {
         return(
 
             <div className='modal__btn'>
-            <button onClick={openModal}>занять место</button>
+            {!isAdmin && <button onClick={openModal}>занять место</button>}
             {modal}
             </div>
         )

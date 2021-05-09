@@ -17,7 +17,6 @@ return[
 }
 
 const deleteRoom = ({rooms}, value) =>{
-    console.log('was here!');
     const removeRoom = rooms.findIndex((elem)=> elem.room === `комната ${value}`);
     console.log(removeRoom);
     return[

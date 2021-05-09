@@ -254,7 +254,7 @@ left: 0;
       left: -25%;
   }
 
-  .admin__no_auth_logout{
+  .admin__disabled_btn{
         opacity: 0.65; 
         cursor: default;
         pointer-events: none;

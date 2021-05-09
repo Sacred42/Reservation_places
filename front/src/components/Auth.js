@@ -1,8 +1,8 @@
 import React,{ useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Ajax from './services/ajax';
-import {adminTrue , adminFalse} from './actions/AdminAction';
-import {unSetVisibleWindow} from './actions/SuccesWindowAction';
+import {adminTrue , adminFalse} from '../actions/AdminAction';
+import {unSetVisibleWindow} from '../actions/SuccesWindowAction';
 
 
 const Auth = () =>{
