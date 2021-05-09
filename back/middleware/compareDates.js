@@ -45,7 +45,7 @@ function validationDates(){
       return checkPresentData(formated);
     }
     else{
-     throw new Error('bad format data!')
+     throw new Error('bad format date!')
     }  
 }
 

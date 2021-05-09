@@ -1,6 +1,7 @@
 const config = require('./dbconfig');
 const sql = require('mssql');
 const validationDates = require('./middleware/compareDates');
+const classError = require('./services/classErrorsDB');
  
 async function requestToBase(query){
     try {
@@ -9,7 +10,7 @@ async function requestToBase(query){
         return products.recordsets;
     }
     catch (error) {
-        console.log(error);
+       new classError.ErrorDB(error);
     } 
 }
 
