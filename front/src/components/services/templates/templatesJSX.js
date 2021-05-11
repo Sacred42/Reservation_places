@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {openWindow} from '../../actions/ModalWindowActions';
+import GetFreeRoom from '../../GetFreeRooms';
 
 const test = () =>{
    const activeRoom = localStorage.getItem('current_room');
@@ -19,7 +20,6 @@ const Templates = (templ , Admin) => {
     const openModal = (status) =>{
       setStatus(status);
       dispatch(openWindow('createRoom'));
-
      }
      
     
@@ -32,9 +32,9 @@ const Templates = (templ , Admin) => {
                           <div>Комната(номер)</div>
                           <input className='modal__dates__for_change' type='text' name='number' id='number' ></input>
                       </div>
-                    <div className="modal__dates">
-                          <header>Дата</header>
-
+                      <header>Дата</header>
+                    <div className="modal__dates modal__dates_flex">
+                        <div>
                         <div className='modal__dates_day_month'>
                             <span>
                               <div>День</div>
@@ -65,6 +65,9 @@ const Templates = (templ , Admin) => {
                              </div>
                           </div>
                           </div>
+                        </div>
+      
+                          <div><GetFreeRoom/></div>
 
                     </div>
                           <div> 

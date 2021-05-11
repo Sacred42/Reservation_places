@@ -30,6 +30,10 @@ export default class Ajax {
       return this.sendRequest(`/${id}`, 'GET');
     }
 
+    getFreeRooms = async()=>{
+      return this.sendRequest('/freeRooms' , 'GET');
+    }
+
     unBusyPlace = (number) =>{
       const body = {
         number : number

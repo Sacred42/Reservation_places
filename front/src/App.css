@@ -209,6 +209,34 @@ left: 0;
     visibility: hidden;
   }
 
+  .modal__free_rooms_position{
+      margin-top: -80px;
+  }
+
+  .modal__free_room{
+    background-color:#37E82C;
+    width:40px;
+    height:40px;
+    margin: 5px;
+    text-align: center;
+    padding-top:15px;
+    font-size:12px;
+    border-radius: 10px;
+  }
+
+  .modal__free_room_list{
+      list-style: none;
+      display: flex;
+      flex-direction:row;
+      flex-wrap: wrap;
+      width: 400px
+  }
+
+  .modal__dates_flex{
+      display: flex;
+      justify-content: space-between;
+  }
+
 
 
   /* setVisibleWindow */

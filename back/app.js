@@ -19,16 +19,21 @@ app.use(express.static(path.join(__dirname , 'static')));
 app.get('/' , (req,res)=>{
     dboperations.getExpiredRooms()
     .then(()=>dboperations.getResource())
-    .then(result => {
-        res.send(result);
+    .then(result => {res.send(result);
      })
+})
+
+app.get('/freeRooms' , (req,res)=>{
+    dboperations.getFreeRooms()
+    .then((data)=>res.send(data))
+    .catch((err)=> res.status(404).send({error : err.message}));
 })
 
 app.get('/:id' , (req , res)=>{
     const param = req.params;
     dboperations.getResourceToFloor(param)
-    .then(result =>
-        res.send(result))
+    .then(result =>res.send(result))
+    .catch((err)=> res.status(404).send({error : err.message}));
 
 })
 
@@ -87,6 +92,8 @@ app.delete('/deleteRoom', (req,res)=>{
     .then(data=>res.send(JSON.stringify(data)))
     .catch((err)=> res.status(404).send({error : err.message}));
 })
+
+
 
 
 

@@ -24,6 +24,11 @@ async function getExpiredRooms(){
  return requestToBase(query);
 }
 
+async function getFreeRooms(){
+    const query = `SELECT Floor.Name, Room.Name, Room.Status, Room.Data, Room.ActiveUser  FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId WHERE Status = 'free'`;
+    return requestToBase(query);
+}
+
 async function getResource() {
     const query = 'SELECT Floor.Name, Room.Name, Room.Status, Room.Data, Room.ActiveUser  FROM Room INNER JOIN Floor ON Floor.floorId = Room.floorId'
     return requestToBase(query);
@@ -87,6 +92,7 @@ module.exports = {
     unBusyPlace : unBusyPlace,
 
     deleteRoom : deleteRoom,
-    createRoom : createRoom
+    createRoom : createRoom,
+    getFreeRooms: getFreeRooms
 }
 

@@ -4,6 +4,7 @@ import {SuccessWindowReducer} from './components/reducer/SuccessWindowReducer';
 import {FloorReducer} from './components/reducer/FloorReducer';
 import {ModalWindow} from './components/reducer/ModalWindow';
 import {isAdminReducer} from './components/reducer/isAdminReducer';
+import {FreeRoomsReducer} from './components/reducer/FreeRoomsReducer';
 import thunk from 'redux-thunk';
 
 const reducer = combineReducers({
@@ -13,7 +14,9 @@ const reducer = combineReducers({
 
   ModalWindow : ModalWindow,
 
-  isAdminReducer : isAdminReducer
+  isAdminReducer : isAdminReducer,
+
+  FreeRoomsReducer : FreeRoomsReducer
 })
 
 const composeEnhncer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

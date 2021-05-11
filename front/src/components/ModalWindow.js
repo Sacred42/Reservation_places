@@ -13,12 +13,11 @@ const Modal = () => {
     const {visible , template} = state.ModalWindow;
     const {isAdmin} = state.isAdminReducer;
     const functions = TemplatesFn(template);
+     const styleFlex = {display : 'flex'};
     const {request, func} = functions;
     const dispatch = useDispatch();
     let user = isAdmin ? activeUser : localStorage.getItem('user') ;
 
-    
-   
     const clear = () =>{
         dispatch(closeWindow());
         setError(null);
@@ -70,7 +69,7 @@ const Modal = () => {
    const modal = visible ? (
             <Portal>
                 <form onSubmit={loadingData}>
-                <div className='modal'>
+                <div className='modal' style={template === 'busyPlaceNA' ? styleFlex : {}}>
                     <div className='modal__window'>
                     <div className='modal__exit' onClick={clear}>X</div>
                     <div className='modal__body'>
