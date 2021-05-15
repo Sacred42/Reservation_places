@@ -1,8 +1,8 @@
 import React from 'react';
 import Ajax from './services/ajax';
-import {unBusyPlace, deleteRoom} from './actions/RoomAction';
+import {changeStatusRoom, deleteRoom} from './actions/RoomAction';
 import { useDispatch, useSelector } from 'react-redux';
-import {openWindow } from './actions/ModalWindowActions'
+import {openWindow } from './actions/ModalWindowActions';
 
 
 const ViewRoom = (props) => {
@@ -15,7 +15,7 @@ const {isAdmin} = state;
 const unBusy = (room) =>{
    
    ajax.unBusyPlace(room)
-   .then((data)=>dispatch(unBusyPlace(data)))
+   .then((data)=>dispatch(changeStatusRoom(data)))
    .catch(err=>err);
    
 }
@@ -65,6 +65,7 @@ const createRoom = (room) =>{  // формирование комнаты
  {isAdmin && arrRooms.push(addRoom())};
  return arrRooms;
 }
+
 const arrRooms = createRoom(rooms);
 
   return (

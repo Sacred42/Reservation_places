@@ -32,18 +32,12 @@ const RoomReducer = (state = {rooms : []} , action) =>{
               rooms : [],
               error : null
           }
-        case 'SUCCESS_ROOMS_INITIAL':
+        case 'SUCCESS_ROOMS':
             return{
               loading: false,
               rooms : action.payload,
               error : null
             }
-        case 'SUCCESS_ROOMS_TO_FLOOR' : 
-          return {
-              loading: false,
-              rooms : action.payload,
-              error : null
-          }
         case 'FAILURE_ROOMS':
             return{
               loading: false,
@@ -54,10 +48,6 @@ const RoomReducer = (state = {rooms : []} , action) =>{
             return {
                 rooms : changeStatus(state, action.payload)
             }
-        case 'UNBUSY_ROOM' : 
-             return {
-                 rooms : changeStatus(state, action.payload)
-             }
         case 'CREATE_ROOM' :
             return{
                 rooms : createRoom(state, action.payload)

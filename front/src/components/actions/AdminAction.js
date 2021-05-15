@@ -3,7 +3,7 @@ const adminTrue = () => (dispatch)=>{
 }
 
 const adminFalse = () => (dispatch)=>{
-    dispatch({type : 'ISADMIN_FALSE'})
+   dispatch({type : 'ISADMIN_FALSE'})
 }
 
 export {adminTrue, adminFalse};
