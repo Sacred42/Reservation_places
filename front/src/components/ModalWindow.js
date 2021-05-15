@@ -29,7 +29,7 @@ const Modal = () => {
     }
 
     const openModal = () =>{
-        dispatch(openWindow('busyPlaceNA'));
+        dispatch(openWindow({templ :'busyPlaceNA' , adtn : null}));
         dispatch(unSetVisibleWindow());
     }
 
@@ -52,13 +52,13 @@ const Modal = () => {
          return;
     }
         
-
    const loadingData = (e) =>{
             e.preventDefault();
             if(checkWriteIn()){
                 return setError('write in all fields!');
             }
-            if(isAdmin && (template === 'busyPlaceA' || template==='createRoom')){getUser()};
+            
+            if(isAdmin && (template.templ === 'busyPlaceA' || template.templ ==='createRoom')){getUser()};
             const date = parseNodeList(document.querySelectorAll('.modal__dates__for_change'));
             request(date, user)
             .then((room)=>dispatch(func(room)))

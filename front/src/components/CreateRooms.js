@@ -27,20 +27,21 @@ const deleted = (room) =>{
   .catch(err=>err);
 }
 
-const openModal = (room , templ) => {
+const openModal = (room , {templ , adtn = null }) => {
+  console.log('это adtn', adtn)
   if(room === null){
-    return dispatch(openWindow(templ));
+    return dispatch(openWindow({templ , adtn } ));
   }
   const getNumberRoom = room.split(' ')[1];
   localStorage.setItem('current_room' , getNumberRoom );
-  dispatch(openWindow(templ));
+  dispatch(openWindow({templ , adtn }));
 
 }
 
 const addRoom = () =>{
   return(
   <li className='empty__room' key={'btn_add_room'}>
-    <div><button onClick={()=>openModal( null ,'createRoom')}>Добавить комнату</button></div>
+    <div><button onClick={()=>openModal( null ,{templ : 'createRoom'})}>Добавить комнату</button></div>
  </li>
   )
 }
@@ -54,11 +55,11 @@ const createRoom = (room) =>{  // формирование комнаты
       arrRooms.push(<li className={`place place__${elem.status}`} key={elem.room}>
        <div>{elem.room}</div>
        <div>{elem.status}</div>
-       {(ActiveUser || isAdmin) ? <div><a onClick={()=>openModal(elem.room, 'createDate')}>{elem.data}</a></div> : <div>{elem.data}</div>}
+       {(ActiveUser || isAdmin) ? <div><a onClick={()=>openModal(elem.room, {templ : 'createDate' , adtn : elem.data} )}>{elem.data}</a></div> : <div>{elem.data}</div>}
        {(ActiveUser || isAdmin) && elem.status === 'busy' && <div><button onClick={()=>unBusy(elem.room)}>unbusy</button></div>}
-       {(ActiveUser || isAdmin) && elem.status === 'free' && <div><button onClick={()=>openModal(elem.room , 'busyPlaceA')}>busy</button></div>}
+       {(ActiveUser || isAdmin) && elem.status === 'free' && <div><button onClick={()=>openModal(elem.room , {templ : 'busyPlaceA'})}>busy</button></div>}
        {isAdmin && <div><button onClick={()=>deleted(elem.room)}>delete</button></div>} 
-       {isAdmin && <div><a onClick={()=>openModal(elem.room, 'changeUser')}>{elem.user}</a></div>}
+       {isAdmin && <div><a onClick={()=>openModal(elem.room, {templ : 'changeUser'})}>{elem.user}</a></div>}
      </li>)
      }
  })

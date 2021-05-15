@@ -10,8 +10,9 @@ const test = () =>{
 
 
 
-const Templates = (templ , Admin) => {
-    const {template} = templ;
+const Templates = (templat ) => {
+    console.log(templat ,'Новый шаблон');
+    const {template :{adtn, templ}} = templat;
     const state = useSelector(state=>state);
     const dispatch = useDispatch();
     const {isAdmin} = state.isAdminReducer;
@@ -19,11 +20,11 @@ const Templates = (templ , Admin) => {
     const activeFloor = localStorage.getItem('current_floor');
     const openModal = (status) =>{
       setStatus(status);
-      dispatch(openWindow('createRoom'));
+      dispatch(openWindow({templ : 'createRoom' , adtn : null}));
      }
      
     
-    switch(template){
+    switch(templ){
         case 'busyPlaceNA' : 
         return (
             <div>
