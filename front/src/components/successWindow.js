@@ -5,13 +5,20 @@ class SuccessWindow extends React.Component{
     state = {
         currentTemplate : null
     }
+
+    componentDidMount(){
+        console.log('cоздание');
+    }
     componentDidUpdate(){
         if(this.props.template){
             if(this.props.template !== this.state.currentTemplate){
                 this.setState({currentTemplate : this.props.template})
             }
         }
- 
+    }
+
+    componentWillUnmount(){
+        console.log('удаление!');
     }
     render(){
         const {visible} = this.props;
@@ -43,7 +50,7 @@ class SuccessWindow extends React.Component{
             </div>  
             )
         }
-        return<div></div>;
+        return<div className="successWindow"></div>;
     }  
 }
 

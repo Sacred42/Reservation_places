@@ -16,16 +16,12 @@ class FreeRooms extends React.Component {
      this.getFree();
     }
 
-    choisenPlace = (room) =>{
-     
-    }
-
     createRoom = (arr) =>{
     let newArr = [];
     arr.forEach((elem)=>{
         if(elem.floor === `${this.activeFloor} этаж`){
             const numberRoom = elem.room.split(' ')[1];
-            newArr.push(<li onClick={()=>console.log(this.choisenPlace(elem.room))} className="modal__free_room" key={`free- ${elem.room}`}>
+            newArr.push(<li className="modal__free_room" key={`free- ${elem.room}`}>
                 <div>{numberRoom}</div>
             </li>)
         }

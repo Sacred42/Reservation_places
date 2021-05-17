@@ -7,9 +7,7 @@ const templateFunction = (templat) =>{
       return {request : ajax.changeResource,
             func : changeStatusRoom}
     }
-    console.log('templat!!!-', templat)
     const {adtn, templ} = templat;
-    console.log('темпал-', templ)
     
     switch(templ){
         case 'busyPlaceNA' :

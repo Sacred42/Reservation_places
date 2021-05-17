@@ -28,7 +28,6 @@ const deleted = (room) =>{
 }
 
 const openModal = (room , {templ , adtn = null }) => {
-  console.log('это adtn', adtn)
   if(room === null){
     return dispatch(openWindow({templ , adtn } ));
   }
