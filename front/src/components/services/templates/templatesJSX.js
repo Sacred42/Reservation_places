@@ -28,14 +28,14 @@ const Templates = (templat ) => {
         case 'busyPlaceNA' : 
         return (
             <div>
-                 <h3 className='modal__header'>Выберети свободную комнату</h3>
-                 <div>
-                          <div>Комната(номер)</div>
-                          <input className='modal__dates__for_change' type='text' name='number' id='number' ></input>
-                      </div>
-                      <header>Дата</header>
-                    <div className="modal__dates modal__dates_flex">
-                        <div>
+                  <h3 className='modal__header'>Выберети свободную комнату</h3>
+                  <div>
+                     <div>Комната(номер)</div>
+                     <input className='modal__dates__for_change' type='text' name='number' id='number' ></input>
+                  </div>
+                  <header>Дата</header>
+                  <div className="modal__dates modal__dates_flex">
+                     <div>
                         <div className='modal__dates_day_month'>
                             <span>
                               <div>День</div>

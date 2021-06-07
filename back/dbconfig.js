@@ -6,7 +6,9 @@ const config = {
     options:{
         trustedconnection: true,
         enableArithAbort : true, 
-        instancename :'DESKTOP-3BOUIDR'
+        instancename :'DESKTOP-3BOUIDR',
+
+        encrypt: true,
     }
 }
 
